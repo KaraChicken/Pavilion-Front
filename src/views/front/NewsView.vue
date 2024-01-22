@@ -1,5 +1,4 @@
 <template lang="pug">
-VApp
-  RouterView
+h1 HI
 </template>
 

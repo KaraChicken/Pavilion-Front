@@ -15,4 +15,8 @@ VAppBar(color="primary")
       VAppBarTitle 線上菜單(英雄食典)
     VBtn
       VAppBarTitle 加入我們(同道相邀)
+      
+//- 內容
+VMain
+  RouterView(:key="$route.path")
 </template>

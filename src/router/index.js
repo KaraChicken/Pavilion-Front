@@ -12,9 +12,20 @@ const routes = [
         // route level code-splitting
         // this generates a separate chunk (Home-[hash].js) for this route
         // which is lazy-loaded when the route is visited.
-        component: () => import('@/views/HomeView.vue'),
+        component: () => import('@/views/front/HomeView.vue'),
         meta: {
-          title: '炙醉亭 | 首頁'
+          title: '炙醉亭'
+        }
+      },
+      {
+        path: '',
+        name: 'News',
+        // route level code-splitting
+        // this generates a separate chunk (Home-[hash].js) for this route
+        // which is lazy-loaded when the route is visited.
+        component: () => import('@/views/front/NewsView.vue'),
+        meta: {
+          title: '炙醉亭 | 最新消息'
         }
       },
     ],

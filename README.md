@@ -1,6 +1,6 @@
-# essentials
+# 泰山職訓前端網頁設計專題作品
 
-## Project setup
+## 專題名稱： 炙醉亭
 
 ```
 # yarn

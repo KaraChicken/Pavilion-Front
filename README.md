@@ -2,4 +2,4 @@
 
 ## 專題名稱： 炙醉亭
 
-See [前端部分，後端儲存庫](https://github.com/KaraChicken/Pavilion-Back).
+[後端儲存庫](https://github.com/KaraChicken/Pavilion-Back).

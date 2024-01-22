@@ -2,7 +2,7 @@
 VAppBar(color="primary")
   VContainer.d-flex.align-center.justify-center
     VBtn
-      VAppBarTitle 最新消息(武林告示)
+      VAppBarTitle (@click="navigateToPage('../views/front/NewsView.vue')") 最新消息(武林告示)
     VBtn
       VAppBarTitle 店家地圖(行蹤地圖)
     VBtn

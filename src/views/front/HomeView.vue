@@ -26,7 +26,19 @@ Swiper(pagination="pagination" :modules="modules" class="mySwiper")
 </script>
 
 <style scoped>
-img {
-  height: 100%;
+.mySwiper {
+  width: 100vw;
+  height: 100vh;
+}
+
+.mySwiper .swiper-slide {
+  width: 100vw;
+  height: 100vh;
+}
+
+.mySwiper .swiper-slide img {
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover; 
 }
 </style>

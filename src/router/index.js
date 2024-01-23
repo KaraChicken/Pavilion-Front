@@ -9,23 +9,57 @@ const routes = [
       {
         path: '',
         name: 'Home',
-        // route level code-splitting
-        // this generates a separate chunk (Home-[hash].js) for this route
-        // which is lazy-loaded when the route is visited.
         component: () => import('@/views/front/HomeView.vue'),
         meta: {
           title: '炙醉亭'
         }
       },
       {
-        path: '',
+        path: 'news',
         name: 'News',
-        // route level code-splitting
-        // this generates a separate chunk (Home-[hash].js) for this route
-        // which is lazy-loaded when the route is visited.
         component: () => import('@/views/front/NewsView.vue'),
         meta: {
-          title: '炙醉亭 | 最新消息'
+          title: '炙醉亭 | 武林告示'
+        }
+      },
+      {
+        path: 'map',
+        name: 'Map',
+        component: () => import('@/views/front/MapView.vue'),
+        meta: {
+          title: '炙醉亭 | 行蹤地圖'
+        }
+      },
+      {
+        path: 'about',
+        name: 'About',
+        component: () => import('@/views/front/AboutView.vue'),
+        meta: {
+          title: '炙醉亭 | 江湖緣起'
+        }
+      },
+      {
+        path: 'reservation',
+        name: 'Reservation',
+        component: () => import('@/views/front/ReservationView.vue'),
+        meta: {
+          title: '炙醉亭 | 俠客預約'
+        }
+      },
+      {
+        path: 'menu',
+        name: 'Menu',
+        component: () => import('@/views/front/MenuView.vue'),
+        meta: {
+          title: '炙醉亭 | 英雄食典'
+        }
+      },
+      {
+        path: 'join',
+        name: 'Join',
+        component: () => import('@/views/front/JoinView.vue'),
+        meta: {
+          title: '炙醉亭 | 同道相邀'
         }
       },
     ],

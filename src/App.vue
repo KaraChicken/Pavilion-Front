@@ -4,7 +4,7 @@ VApp
 </template>
 
 <style scoped>
-.v-main {
-  background: hsl(6, 16%, 64%);
+#app {
+  background-color: hsl(6, 16%, 64%);
 }
 </style>

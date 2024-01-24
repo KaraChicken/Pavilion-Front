@@ -12,6 +12,6 @@ body::-webkit-scrollbar {
     display: none;
 }
 main {
-  background-color: #afa792;
+  background-color: #82663A;
 }
 </style>

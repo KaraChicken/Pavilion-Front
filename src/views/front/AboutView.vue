@@ -1,6 +1,6 @@
 <template lang="pug">
 H1(class="text-center my-5") 江湖緣起
-Div(class="text-center text-h4")
+Div(class="text-center text-h4" )
   P 江湖間有一處獨特的聚點，名為「炙醉亭」。
   P 這是一座隱匿在武林深處的小亭，門前總是瀰漫著烤肉的誘人香氣，亭內的燈光昏黃，迎接著武者們歸來的腳步。
   P 「炙醉亭」以烤肉為主，每一塊肉都是匠心獨運，經過火焰的熏烤，帶著淡淡的炭香，令人回味無窮。

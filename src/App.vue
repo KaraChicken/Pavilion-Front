@@ -3,8 +3,8 @@ VApp
   RouterView
 </template>
 
-<style scoped>
-#app {
-  background-color: hsl(6, 16%, 64%);
+<style>
+main {
+  background-color: #afa792;
 }
 </style>

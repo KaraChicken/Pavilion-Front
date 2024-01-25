@@ -14,9 +14,9 @@ import { createVuetify } from 'vuetify'
 const MyLightStyle = {
   dark: false,
   colors: {
-    primary: '#6C6A2D',
-    secondary: '#A0674B',
-    tertiary: '#ffff',
+    primary: '#A0674B',
+    secondary: '#6C6A2D',
+    tertiary: '#CAAD5F',
     Accent: '#000',
     error: '#ff0000',
     Success: '#008000',
@@ -46,9 +46,10 @@ const MyDarkStyle = {
 
 export default createVuetify({
   theme: {
-    defaultTheme: 'MyLightStyle',
+    defaultTheme: 'light',
     themes: {
-      MyLightStyle
+      light: MyLightStyle,
+      dark: MyDarkStyle
     },
   },
 })

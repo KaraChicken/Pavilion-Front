@@ -2,7 +2,7 @@
 VAppBar(color="primary")
   VContainer.d-flex.align-center.justify-center
     VBtn(to="/news")
-      VAppBarTitle(style="color: #D9CD90;") 最新消息(武林告示)
+      VAppBarTitle(class="text01") 最新消息(武林告示)
     VBtn(to="/map")
       VAppBarTitle(style="color: #D9CD90;") 店家地圖(行蹤地圖)
     VBtn(to="/about")

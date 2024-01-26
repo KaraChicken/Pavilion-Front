@@ -18,6 +18,7 @@ const MyLightStyle = {
     secondary: '#6C6A2D',
     tertiary: '#CAAD5F',
     Accent: '#000',
+    input: '#fff',
     error: '#ff0000',
     Success: '#008000',
     Warning: '#ffff00',

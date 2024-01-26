@@ -2,7 +2,7 @@
 VCantainer
   VRow(style="height: 100%;")
     VCol(cols="12" class="d-flex justify-center align-center")
-      Div(class="pa-5" style="width: 1200px; height: 700px; border-radius: 20px; background-color: #a38a66;")
+      Div(class="pa-5" style="width: 75rem; height: 43.75rem; border-radius: 20px; background-color: #a38a66;")
         H1(class="text-center mb-10") 同道相邀
         Div(class="d-flex justify-center align-center" style="background-color= #dac9b1;")
           H1 酒俠之長 &nbsp;&nbsp; 80000

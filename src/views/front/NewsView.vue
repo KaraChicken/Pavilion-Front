@@ -3,7 +3,7 @@ VCantainer
   VRow(style="height: 100%;")
     VCol(cols="12" class="d-flex justify-center align-center")
       //- background-color: #CAAD5F;
-      Div(class="pa-5" style="width: 1200px; height: 700px; border-radius: 20px; background-color: #CAAD5F;" )
+      Div(class="pa-5" style="width: 75rem; height: 43.75rem; border-radius: 20px; background-color: #CAAD5F;" )
         H1(class="text-center mb-10" style="color: #261E47;") 武林告示
         //- 這邊可能要串接後端接收資料
         Div(class="ml-5" style="background-color= ;")

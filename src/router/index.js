@@ -11,7 +11,9 @@ const routes = [
         name: 'Home',
         component: () => import('@/views/front/HomeView.vue'),
         meta: {
-          title: '炙醉亭'
+          title: '炙醉亭',
+          login: false,
+          admin: false
         }
       },
       {
@@ -19,7 +21,9 @@ const routes = [
         name: 'News',
         component: () => import('@/views/front/NewsView.vue'),
         meta: {
-          title: '炙醉亭 | 武林告示'
+          title: '炙醉亭 | 武林告示',
+          login: false,
+          admin: false
         }
       },
       {
@@ -27,7 +31,9 @@ const routes = [
         name: 'Map',
         component: () => import('@/views/front/MapView.vue'),
         meta: {
-          title: '炙醉亭 | 行蹤地圖'
+          title: '炙醉亭 | 行蹤地圖',
+          login: false,
+          admin: false
         }
       },
       {
@@ -35,7 +41,9 @@ const routes = [
         name: 'About',
         component: () => import('@/views/front/AboutView.vue'),
         meta: {
-          title: '炙醉亭 | 江湖緣起'
+          title: '炙醉亭 | 江湖緣起',
+          login: false,
+          admin: false
         }
       },
       {
@@ -43,7 +51,9 @@ const routes = [
         name: 'Reservation',
         component: () => import('@/views/front/ReservationView.vue'),
         meta: {
-          title: '炙醉亭 | 俠客預約'
+          title: '炙醉亭 | 俠客預約',
+          login: true,
+          admin: false
         }
       },
       {
@@ -51,7 +61,9 @@ const routes = [
         name: 'Menu',
         component: () => import('@/views/front/MenuView.vue'),
         meta: {
-          title: '炙醉亭 | 英雄食典'
+          title: '炙醉亭 | 英雄食典',
+          login: false,
+          admin: false
         }
       },
       {
@@ -59,16 +71,33 @@ const routes = [
         name: 'Join',
         component: () => import('@/views/front/JoinView.vue'),
         meta: {
-          title: '炙醉亭 | 同道相邀'
+          title: '炙醉亭 | 同道相邀',
+          login: false,
+          admin: false
         }
       },
     ],
   },
+  {
+    path: '/admin',
+    component: () => import('@/layouts/AdminLayout.vue'),
+    children: [
+      {
+        path: '',
+        name: 'AdminHome',
+        component: () => import('@/views/HomeView.vue'),
+        meta: {
+          login: true,
+          admin: false
+        }
+      }
+    ]
+  }
 ]
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
-  routes,
+  routes
 })
 
 router.afterEach((to) => {

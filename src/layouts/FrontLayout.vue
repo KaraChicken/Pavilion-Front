@@ -19,8 +19,11 @@ import { useSnackbar } from 'vuetify-use-dialog'
 import { useRouter } from 'vue-router'
 
 const { apiAuth } = useApi()
+const router = useRouter()
+const createSnackbar = useSnackbar()
 const user = useUserStore()
 
+// 導覽列
 const navItems = computed(() => {
     return [
     { to: "/news", text: "最新消息(武林告示)", show: !user.isLogin },
@@ -43,7 +46,9 @@ const logout = async () => {
       text: '登出成功',
       showCloseButton: false,
       snackbarProps: {
-        
+        timeout: 5000,
+        color: 'Success',
+        location: 'bottom'
       }
     })
   } catch (error) {

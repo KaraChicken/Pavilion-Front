@@ -9,7 +9,7 @@ VApp
   參考資料： https://ithelp.ithome.com.tw/articles/10197593
 */
 body::-webkit-scrollbar {
-    display: none;
+  display: none;
 }
 main {
   background-color: #82663A;

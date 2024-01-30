@@ -24,6 +24,6 @@ export const useUserStore = defineStore('user', () => {
   })
 
   const isAdmin = computed(() => {
-    
+    return token.value.length > 0
   })
 })

@@ -80,12 +80,12 @@ const routes = [
   },
   {
     path: '/admin',
-    component: () => import('@/layouts/AdminLayout.vue'),
+    component: () => import('@/layouts/admin/Layout.vue'),
     children: [
       {
         path: '',
         name: 'AdminHome',
-        component: () => import('@/views/HomeView.vue'),
+        component: () => import('@/views/admin/HomeView.vue'),
         meta: {
           login: true,
           admin: false

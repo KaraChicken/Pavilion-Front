@@ -24,7 +24,7 @@ const MyLightStyle = {
     Warning: '#ffff00',
     info: '#0000ff',
     text01: '#D9CD90',
-    text02: '#008000',
+    text02: '#000',
     text03: '#ff0000'
   }
 }

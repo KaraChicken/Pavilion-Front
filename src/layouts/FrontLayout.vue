@@ -1,13 +1,11 @@
 <template lang="pug">
 VAppBar(color="secondary")
-  VContainer.d-flex.align-center
-    template(v-for="(button, index) in navItems" :key="index")
-      VBtn(:to="button.to" color="text01")
-        VAppBarTitle(v-if="navItems.show") {{ button.text }}
-    VBtn(:to="button.to" color="text01")
-      VAppBarTitle(prepend-icon="mdi-logout" v-if="user.isLogin" @click="logout") 登出
+  VContainer.d-flex.align-center.justify-center
+    template(v-for="button in navItems" :key="button.to")
+      VBtn.mx-1(:to="button?.to" color="text01" v-if="button.show")
+        VAppBarTitle() {{ button.text }}
 //- 內容
-VMain
+VMain()
   RouterView(:key="$route.path")
 </template>
 <script setup>
@@ -32,7 +30,8 @@ const navItems = computed(() => {
     { to: "/", text: "炙醉亭", show: !user.isLogin },
     { to: "/reservation", text: "線上訂位(俠客預約)", show: user.isLogin },
     { to: "/menu", text: "線上菜單(英雄食典)", show: !user.isLogin },
-    { to: "/join", text: "登入(同道相邀)", show: !user.isLogin }
+    { to: "/login", text: "登入(同道相邀)", show: !user.isLogin }
+    // { to: "/logout", text: "登出", show: user.isLogin }
   ]
 })
 
@@ -51,8 +50,18 @@ const logout = async () => {
         location: 'bottom'
       }
     })
+    router.push('/')
   } catch (error) {
-
+    const text = error?.response?.dara?.message || '發生錯誤，請稍後再試'
+    createSnackbar({
+      text,
+      showCloseButton: false,
+      snackbarProps: {
+        timeout: 2000,
+        color: 'red',
+        location: 'bottom'
+      }
+    })
   }
 }
 

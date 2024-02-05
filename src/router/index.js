@@ -67,16 +67,26 @@ const routes = [
         }
       },
       {
-        path: 'join',
-        name: 'Join',
-        component: () => import('@/views/front/JoinView.vue'),
+        path: 'login',
+        name: 'Login',
+        component: () => import('@/views/LoginView.vue'),
         meta: {
           title: '炙醉亭 | 同道相邀',
           login: false,
           admin: false
         }
       },
-    ],
+      {
+        path: 'register',
+        name: 'Register',
+        component: () => import('@/views/RegisterView.vue'),
+        meta: {
+          title: '炙醉亭 | 同道相邀',
+          login: false,
+          admin: false
+        }
+      }
+    ]
   },
   {
     path: '/admin',

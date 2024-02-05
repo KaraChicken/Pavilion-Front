@@ -80,7 +80,7 @@ const routes = [
   },
   {
     path: '/admin',
-    component: () => import('@/layouts/admin/Layout.vue'),
+    component: () => import('@/layouts/ADminLayout.vue'),
     children: [
       {
         path: '',

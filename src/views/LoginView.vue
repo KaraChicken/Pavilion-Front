@@ -1,32 +1,30 @@
 <template lang="pug">
-VCantainer
+VContainer
   VRow(style="height: 100%;")
     VCol.d-flex.justify-center.align-center(cols="12")
       Div(class="pa-5" style="width: 75rem; height: 43.75rem; border-radius: 20px; background-color: #a38a66;")
         H1(class="text-center mb-10") 同道相邀
         VCard.mx-auto.px-6.py-8(max-width="344")
-          H5 沒有帳號嗎?
-            VBtn 立即註冊
-        VCard.mx-auto.px-6.py-8(max-width="344")
-          VForm(v-model="form" @submit.prevent="submit")
-            VTextField(v-model="account" :readonly="loading" :rules="[required]" class="mb-2" clearable label="請輸入帳號")
-            VTextField(v-model="password" :readonly="loading" :rules="[required]" clearable label="Password" placeholder="請輸入密碼")
-            Br
-            VBtn(:disabled="!form" :loading="loading" blockcolor="success" size="large" type="submit" variant="elevated") 登入
-
+          H5.mb-5 沒有帳號嗎?
+            VBtn.mx-5 立即註冊
+          VSheet(max-width="300" class="mx-auto")
+            VForm(validate-on="submit lazy" @submit.prevent="submit")
+              VTextField(v-model="account.value.value" :rules="rules" label="帳號")
+              VTextField(v-model="password.value.value" :rules="rules" label="密碼")
+              VBtn(:loading="loading" type="submit" block class="mt-2" text="登入")
 </template>
+
 <script setup>
 import { useForm, useField } from 'vee-validate'
 import * as yup from 'yup'
 import { useRouter } from 'vue-router'
-import { useSnackbar } from 'vuetify-use-dialog'
+import Swal from 'sweetalert2'
 import { useApi } from '@/composables/axios'
 import { useUserStore } from '@/store/user'
-import router from '@/router'
 
 const { api } = useApi()
 
-const createSnackbar = useSnackbar()
+const router = useRouter()
 
 const user = useUserStore()
 
@@ -35,13 +33,13 @@ const schema = yup.object({
   account: yup
     .string()
     .required('帳號為必填欄位')
-    .min(4, '密碼長度不符')
+    .min(4, '使用者帳號長度不符')
     .max(20, '使用者帳號長度不符'),
   password: yup
     .string()
     .required('密碼為必填欄位')
     .min(4, '密碼長度不符')
-    .max(4, '密碼長度不符')
+    .max(20, '密碼長度不符')
 })
 
 const { handleSubmit, isSubmitting } = useForm({
@@ -58,28 +56,43 @@ const submit = handleSubmit(async (values) => {
       password: values.password
     })
     user.login(data.result)
-    createSnackbar({
-      text: '登入成功',
-      showCloseButton: false,
-      snackbarProps: {
-        timeout: 2000,
-        color: 'green',
-        location: 'bottom'
-      }
-    })
+    console.log(data.result)
+    // createSnackbar({
+    //   text: '登入成功',
+    //   showCloseButton: false,
+    //   snackbarProps: {
+    //     timeout: 2000,
+    //     color: 'green',
+    //     location: 'bottom'
+    //   }
+    // })
+    Swal.fire({
+      position: "center",
+      icon: "success",
+      title: "登入成功",
+      showConfirmButton: false,
+      timer: 1500
+    });
     router.push('/')
   } catch (error) {
     console.log(error)
     const text = error?.response?.data?.message || '發生錯誤，請稍後再試'
-    createSnackbar({
-      text,
-      showCloseButton: false,
-      snackbarProps: {
-        timeout: 2000,
-        color: 'red',
-        location: 'bottom'
-      }
-    })
+    // createSnackbar({
+    //   text,
+    //   showCloseButton: false,
+    //   snackbarProps: {
+    //     timeout: 0,
+    //     color: 'red',
+    //     location: 'bottom'
+    //   }
+    // })
+    Swal.fire({
+      position: "center",
+      icon: "error",
+      title: "登入失敗",
+      text: "請檢查帳號密碼是否輸入正確",
+      showConfirmButton: true,
+    });
   }
 })
 </script>

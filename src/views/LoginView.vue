@@ -55,17 +55,10 @@ const submit = handleSubmit(async (values) => {
       account: values.account,
       password: values.password
     })
+    // 儲存 token 到 StorageStorage
+    sessionStorage.setItem('帳號：' + data.result.account, data.result.token)
     user.login(data.result)
     console.log(data.result)
-    // createSnackbar({
-    //   text: '登入成功',
-    //   showCloseButton: false,
-    //   snackbarProps: {
-    //     timeout: 2000,
-    //     color: 'green',
-    //     location: 'bottom'
-    //   }
-    // })
     Swal.fire({
       position: "center",
       icon: "success",
@@ -76,22 +69,11 @@ const submit = handleSubmit(async (values) => {
     router.push('/')
   } catch (error) {
     console.log(error)
-    const text = error?.response?.data?.message || '發生錯誤，請稍後再試'
-    // createSnackbar({
-    //   text,
-    //   showCloseButton: false,
-    //   snackbarProps: {
-    //     timeout: 0,
-    //     color: 'red',
-    //     location: 'bottom'
-    //   }
-    // })
     Swal.fire({
       position: "center",
       icon: "error",
-      title: "登入失敗",
-      text: "請檢查帳號密碼是否輸入正確",
-      showConfirmButton: true,
+      title: "登出失敗",
+      confirmButtonText: "確定",
     });
   }
 })

@@ -37,6 +37,8 @@ const navItems = computed(() => {
 
 const logout = async () => {
   try {
+    // 移除 token，這邊要注意要填 localStorage.setItem() 中的鍵值才能移除
+    sessionStorage.removeItem('帳號：' + user.account)
     // 這邊的 delete 為 axios 方法，apiAuth連結至axios檔案取得 .env.development 的值
     await apiAuth.delete('/users/logout')
     // 呼叫 store 的 logout() 函式

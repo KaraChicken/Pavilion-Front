@@ -4,6 +4,8 @@ VAppBar(color="secondary")
     template(v-for="button in navItems" :key="button.to")
       VBtn.mx-1(:to="button?.to" color="text01" v-if="button.show")
         VAppBarTitle() {{ button.text }}
+    VBtn.mx-1(@click="logout" color="text01" v-if="user.isLogin")
+      VAppBarTitle() 登出
 //- 內容
 VMain()
   RouterView(:key="$route.path")
@@ -14,6 +16,7 @@ import { ref, computed } from 'vue'
 import { useUserStore } from '@/store/user'
 import { useApi } from '@/composables/axios'
 import { useRouter } from 'vue-router'
+import Swal from 'sweetalert2'
 
 const { apiAuth } = useApi()
 const router = useRouter()
@@ -28,39 +31,31 @@ const navItems = computed(() => {
     { to: "/", text: "炙醉亭", show: !user.isLogin },
     { to: "/reservation", text: "線上訂位(俠客預約)", show: user.isLogin },
     { to: "/menu", text: "線上菜單(英雄食典)", show: !user.isLogin },
-    { to: "/login", text: "登入(同道相邀)", show: !user.isLogin },
-    { to: "/logout", text: "登出", show: user.isLogin }
+    { to: "/login", text: "登入(同道相邀)", show: !user.isLogin }
   ]
 })
 
 const logout = async () => {
   try {
     // 這邊的 delete 為 axios 方法，apiAuth連結至axios檔案取得 .env.development 的值
-    await apiAuth.delete('/user/logout')
+    await apiAuth.delete('/users/logout')
     // 呼叫 store 的 logout() 函式
     user.logout()
-    // createSnackbar({
-    //   text: '登出成功',
-    //   showCloseButton: false,
-    //   snackbarProps: {
-    //     timeout: 5000,
-    //     color: 'Success',
-    //     location: 'bottom'
-    //   }
-    // })
+    Swal.fire({
+      position: "center",
+      icon: "success",
+      title: "登出成功",
+      showConfirmButton: false,
+      timer: 1500
+    });
     router.push('/')
   } catch (error) {
-    const text = error?.response?.dara?.message || '發生錯誤，請稍後再試'
-    // createSnackbar({
-    //   text,
-    //   showCloseButton: false,
-    //   snackbarProps: {
-    //     timeout: 2000,
-    //     color: 'red',
-    //     location: 'bottom'
-    //   }
-    // })
+    Swal.fire({
+      position: "center",
+      icon: "error",
+      title: "登出失敗",
+      confirmButtonText: "確定",
+    });
   }
 }
-
 </script>

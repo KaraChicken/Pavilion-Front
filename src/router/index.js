@@ -117,15 +117,12 @@ router.afterEach((to) => {
 
 router.beforeEach(async (to, from, next) => {
   const user = useUserStore()
-  // 如果用户已登录，则从用户存储中获取 token
+  // 如果使用者已登入，則從使用者取得 token
   if (user.isLogin) {
     const token = user.token
-    // 这里可以根据需要进一步处理 token，比如验证其有效性等
     if (token) {
-      // 在这里可以根据需要进行进一步的操作，比如发送 token 到服务器进行验证等
       console.log("用户已登录，token为：", token)
     } else {
-      // 如果没有 token，可以做一些处理，比如重新登录
       console.log("用户已登录，但没有找到有效的 token")
     }
   }
@@ -150,7 +147,7 @@ router.beforeEach(async (to, from, next) => {
 })
 
 function getTokenFromSessionStorage() {
-  // 遍历 sessionStorage，寻找以'帳號：'开头的键值对，获取对应的 token
+  // 遍歷 sessionStorage，尋找以'帳號：'開頭的鍵值對，取得對應的 token
   for (let i = 0; i < sessionStorage.length; i++) {
     const key = sessionStorage.key(i)
     if (key.startsWith('帳號：')) {

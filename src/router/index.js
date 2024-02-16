@@ -94,12 +94,43 @@ const routes = [
     component: () => import('@/layouts/ADminLayout.vue'),
     children: [
       {
-        path: '',
+        path: 'adminHome',
         name: 'AdminHome',
         component: () => import('@/views/admin/HomeView.vue'),
         meta: {
+          title: '管理選單',
           login: true,
-          admin: false
+          admin: true
+        }
+      },
+      {
+        path: 'adminOrders',
+        name: 'AdminOrders',
+        component: () => import('@/views/admin/OrdersView.vue'),
+        meta: {
+          title: '訂單管理',
+          login: true,
+          admin: true
+        }
+      },
+      {
+        path: 'adminProducts',
+        name: 'AdminProducts',
+        component: () => import('@/views/admin/ProductsView.vue'),
+        meta: {
+          title: '商品管理',
+          login: true,
+          admin: true
+        }
+      },
+      {
+        path: 'adminNews',
+        name: 'AdminNews',
+        component: () => import('@/views/admin/NewsView.vue'),
+        meta: {
+          title: '消息公布',
+          login: true,
+          admin: true
         }
       }
     ]
@@ -117,15 +148,6 @@ router.afterEach((to) => {
 
 router.beforeEach(async (to, from, next) => {
   const user = useUserStore()
-  // 如果使用者已登入，則從使用者取得 token
-  if (user.isLogin) {
-    const token = user.token
-    if (token) {
-      console.log("用户已登录，token为：", token)
-    } else {
-      console.log("用户已登录，但没有找到有效的 token")
-    }
-  }
 
   if (from === START_LOCATION) {
     await user.getProfile()
@@ -145,16 +167,5 @@ router.beforeEach(async (to, from, next) => {
     next()
   }
 })
-
-function getTokenFromSessionStorage() {
-  // 遍歷 sessionStorage，尋找以'帳號：'開頭的鍵值對，取得對應的 token
-  for (let i = 0; i < sessionStorage.length; i++) {
-    const key = sessionStorage.key(i)
-    if (key.startsWith('帳號：')) {
-      return sessionStorage.getItem(key)
-    }
-  }
-  return null
-}
 
 export default router

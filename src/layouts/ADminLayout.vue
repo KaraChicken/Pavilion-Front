@@ -1,25 +1,31 @@
 <template lang="pug">
-VAppBar(color="secondary")
-  VContainer.d-flex.align-center
-    VBtn(to="/news" color="text01")
-      VAppBarTitle 最新消息(武林告示)
-    VBtn(to="/map" color="text01")
-      VAppBarTitle 店家地圖(行蹤地圖)
-    VBtn(to="/about" color="text01")
-      VAppBarTitle 關於我們(江湖緣起)
-    VBtn(to="/" color="text01")
-      VAppBarTitle 炙醉亭
-    VBtn(to="/reservation" color="text01")
-      VAppBarTitle 線上訂位(俠客預約)
-    VBtn(to="/menu" color="text01")
-      VAppBarTitle 線上菜單(英雄食典)
-    VBtn(to="/join" color="text01")
-      VAppBarTitle 加入我們(同道相邀)
-  VBtn() 登入
-//- 內容
+VNavigationDrawer(style="backgroundColor: #CAAD5F; color: #000; fontWeight: bold;" permanent)
+  VList
+    VListItem(:prepend-avatar :title="user.account")
+  VDivider
+  VList
+    VListItem(
+      v-for="item in navItems" :key="item.to"
+      :to="item.to" :title="item.text" :prepend-icon="item.icon"
+    )
 VMain
-  RouterView(:key="$route.path")
+  RouterView
 </template>
+
 <script setup>
-import { useRouter } from 'vue-router'
+import { useUserStore } from '@/store/user'
+import { computed } from 'vue'
+
+const user = useUserStore()
+
+const navItems = [
+  { to: '/admin/adminProducts', text: '商品管理', icon: 'mdi-shopping' },
+  { to: '/admin/adminOrders', text: '訂單管理', icon: 'mdi-list-box' },
+  { to: '/admin/adminNews', text: '消息公布', icon: 'mdi-newspaper-plus' },
+  { to: '/', text: '回首頁', icon: 'mdi-home' }
+]
+
+const prependAvatar = computed(() => {
+  return `https://source.boringavatars.com/beam/120/${user.account}?colors=4EB3DE,8DE0A6,FCF09F,F27C7C,DE528C`
+})
 </script>

@@ -82,7 +82,7 @@ VDialog(v-model="dialog" persistent width="500px")
         VFileInput(
           show-size
           label="File input"
-          
+          :rules="[fileSizeRule]"
         )
       VCardActions
         VSpacer
@@ -205,6 +205,24 @@ const submit = handleSubmit(async (values) => {
     })
   }
 })
+
+const file = ref(null);
+const maxFileSize = 1024 * 1024; // 1MB
+
+// 定義檔案大小規則
+const fileSizeRule = computed(() => [
+  (v) => !!v || '檔案不能為空',
+  (v) => !v || v.size <= maxFileSize || `檔案大小不能超過 ${formatBytes(maxFileSize)}`,
+]);
+
+// 將字節轉換為更易讀的單位
+function formatBytes(bytes) {
+  if (bytes === 0) return '0 Bytes';
+  const k = 1024;
+  const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB'];
+  const i = Math.floor(Math.log(bytes) / Math.log(k));
+  return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+}
 
 // 表格每頁幾個
 const tableItemsPerPage = ref(10)

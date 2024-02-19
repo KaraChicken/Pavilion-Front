@@ -15,6 +15,7 @@ export const useUserStore = defineStore('user', () => {
 
   const login = (data) => {
     if (data.token) {
+      console.log(data.token)
       token.value = data.token
     }
     account.value = data.account

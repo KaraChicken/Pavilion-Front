@@ -68,7 +68,6 @@ VDialog(v-model="dialog" persistent width="500px")
           :error-messages="description.errorMessage.value"
         )
         //- VFileInput(
-        //-   label="File input"
         //-   v-model="fileRecords"
         //-   v-model:rawModelValue="rawFileRecords"
         //-   accept="image/jpeg,image/png"
@@ -79,10 +78,16 @@ VDialog(v-model="dialog" persistent width="500px")
         //-   max-size="1MB"
         //-   ref="fileAgent"
         //- )
-        VFileInput(
-          show-size
-          label="File input"
-          :rules="[fileSizeRule]"
+        VueFileAgent(
+          v-model="fileRecords"
+          v-model:rawModelValue="rawFileRecords"
+          accept="image/jpeg,image/png"
+          deletable
+          :error-text="{type: '檔案格式不支援', size: '檔案超過 1MB 大小限制'}"
+          help-text="選擇檔案或拖曳到這裡"
+          :max-files="1"
+          max-size="1MB"
+          ref="fileAgent"
         )
       VCardActions
         VSpacer
@@ -95,9 +100,13 @@ import { ref } from 'vue'
 import * as yup from 'yup'
 import { useForm, useField } from 'vee-validate'
 import { useApi } from '@/composables/axios'
+// import { useSnackbar } from 'vuetify-use-dialog'
+import { VueFileAgent } from '@boindil/vue-file-agent-next'
+import '@boindil/vue-file-agent-next/dist/vue-file-agent-next.css'
 import Swal from 'sweetalert2'
 
 const { apiAuth } = useApi()
+// const createSnackbar = useSnackbar()
 
 const fileAgent = ref(null)
 
@@ -127,7 +136,7 @@ const closeDialog = () => {
 }
 
 // 分類
-const categories = ['飲料', '燒烤', '炸物', '啤酒']
+const categories = ['炸物', '飲料', '啤酒']
 // 表單驗證
 const schema = yup.object({
   name: yup
@@ -158,6 +167,7 @@ const { handleSubmit, isSubmitting, resetForm } = useForm({
     sell: false
   }
 })
+
 const name = useField('name')
 const price = useField('price')
 const description = useField('description')
@@ -189,9 +199,11 @@ const submit = handleSubmit(async (values) => {
     }
     const text = dialogId.value === '' ? '新增成功' : '編輯成功'
     Swal.fire({
-      icon: "error",
-      title: "喔喔！！",
-      text: text
+      position: "center",
+      icon: "success",
+      title: text,
+      showConfirmButton: false,
+      // timer: 1500
     })
     closeDialog()
     tableApplySearch()
@@ -199,30 +211,14 @@ const submit = handleSubmit(async (values) => {
     console.log(error)
     const text = error?.response?.data?.message || '發生錯誤，請稍後再試'
     Swal.fire({
+      position: "center",
       icon: "error",
-      title: "喔喔！！",
-      text: text
+      title: text,
+      showConfirmButton: false,
+      // timer: 1500
     })
   }
 })
-
-const file = ref(null);
-const maxFileSize = 1024 * 1024; // 1MB
-
-// 定義檔案大小規則
-const fileSizeRule = computed(() => [
-  (v) => !!v || '檔案不能為空',
-  (v) => !v || v.size <= maxFileSize || `檔案大小不能超過 ${formatBytes(maxFileSize)}`,
-]);
-
-// 將字節轉換為更易讀的單位
-function formatBytes(bytes) {
-  if (bytes === 0) return '0 Bytes';
-  const k = 1024;
-  const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB'];
-  const i = Math.floor(Math.log(bytes) / Math.log(k));
-  return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
-}
 
 // 表格每頁幾個
 const tableItemsPerPage = ref(10)
@@ -268,14 +264,12 @@ const tableLoadItems = async () => {
   } catch (error) {
     console.log(error)
     const text = error?.response?.data?.message || '發生錯誤，請稍後再試'
-    createSnackbar({
-      text,
-      showCloseButton: false,
-      snackbarProps: {
-        timeout: 2000,
-        color: 'red',
-        location: 'bottom'
-      }
+    Swal.fire({
+      position: "center",
+      icon: "error",
+      title: text,
+      showConfirmButton: true,
+      // timer: 1500
     })
   }
   tableLoading.value = false

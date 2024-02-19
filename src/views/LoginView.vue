@@ -1,17 +1,19 @@
 <template lang="pug">
-VContainer
+VCantainer
   VRow(style="height: 100%;")
-    VCol.d-flex.justify-center.align-center(cols="12")
-      Div(class="pa-5" style="width: 75rem; height: 43.75rem; border-radius: 20px; background-color: #a38a66;")
-        H1(class="text-center mb-10") 同道相邀
-        VCard.mx-auto.px-6.py-8(max-width="344")
-          H5.mb-5 沒有帳號嗎?
-            VBtn.mx-5 立即註冊
-          VSheet(max-width="300" class="mx-auto")
-            VForm(validate-on="submit lazy" @submit.prevent="submit")
-              VTextField(v-model="account.value.value" :rules="rules" label="帳號")
-              VTextField(v-model="password.value.value" :rules="rules" label="密碼")
-              VBtn(:loading="loading" type="submit" block class="mt-2" text="登入")
+    VCol(cols="12" class="d-flex justify-center align-center")
+      //- background-color: #CAAD5F;
+      Div(class="pa-5" style="width: 75rem; height: 43.75rem; border-radius: 20px; background-color: #CAAD5F;" )
+        H1(class="text-center mb-10" style="color: #261E47;") 同道相邀
+        Div(class="d-flex justify-center align-center")
+          VCard(class="px-6 py-8" max-width="344")
+            H5.mb-5 沒有帳號嗎?
+              VBtn.mx-5(to="/register") 立即註冊
+            VSheet(max-width="300" class="mx-auto")
+              VForm(validate-on="submit lazy" @submit.prevent="submit")
+                VTextField(v-model="account.value.value" :rules="rules" label="帳號")
+                VTextField(v-model="password.value.value" :rules="rules" label="密碼")
+                VBtn(:loading="loading" type="submit" block class="mt-2" text="登入")
 </template>
 
 <script setup>

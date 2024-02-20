@@ -29,9 +29,11 @@ const navItems = computed(() => {
     { to: "/map", text: "店家地圖(行蹤地圖)", show: (!user.isLogin || user.isLogin) && !user.isAdmin },
     { to: "/about", text: "關於我們(江湖緣起)", show: (!user.isLogin || user.isLogin) && !user.isAdmin },
     { to: "/", text: "炙醉亭", show: (!user.isLogin || user.isLogin) && !user.isAdmin },
-    { to: "/reservation", text: "線上訂位(俠客預約)", show: user.isLogin || !user.isAdmin },
-    { to: "/menu", text: "線上菜單(英雄食典)", show: (!user.isLogin || user.isLogin) || user.isAdmin },
+    { to: "/reservation", text: "線上訂位(俠客預約)", show: user.isLogin && !user.isAdmin },
+    { to: "/menu", text: "線上菜單(英雄食典)", show: user.isLogin || user.isAdmin },
     { to: "/login", text: "登入(同道相邀)", show: !user.isLogin },
+    { to: "/register", text: "註冊(同道相邀)", show: !user.isLogin },
+    { to: "/cart", text: "購物車", show: user.isLogin },
     { to: '/admin', text: '管理', show: user.isLogin && user.isAdmin }
   ]
 })

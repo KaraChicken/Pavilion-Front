@@ -1,4 +1,4 @@
-<!-- <template lang="pug">
+<template lang="pug">
 VContainer(style="height:100%;" class="d-flex justify-center align-center")
   Div(class="pa-5 bg-tertiary custom-scrollbar" style="width: 75rem; height: 43.75rem; border-radius: 20px; text-align: center;")
     H1(class="text-center mb-10" style="color: #261E47;") 線上訂位
@@ -81,8 +81,8 @@ VContainer(style="height:100%;" class="d-flex justify-center align-center")
   // const resetValidation = {
   //   this: form.resetValidation()
   // }
-</script> -->
-<template lang="pug">
+</script>
+<!-- <template lang="pug">
 VContainer
   VRow
     VCol(cols="12")
@@ -135,4 +135,4 @@ onMounted(async () => {
     });
   }
 })
-</script>
+</script> -->

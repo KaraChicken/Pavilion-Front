@@ -75,7 +75,7 @@ const submit = handleSubmit(async (values) => {
       position: "center",
       icon: "error",
       title: "登出失敗",
-      confirmButtonText: "確定",
+      confirmButtonText: "確定"
     });
   }
 })

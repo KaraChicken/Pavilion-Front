@@ -7,8 +7,8 @@ VCantainer
         H1(class="text-center mb-10" style="color: #261E47;") 同道相邀
         Div(class="d-flex justify-center align-center")
           VCard(class="px-6 py-8" max-width="344")
-            H5.mb-5 沒有帳號嗎?
-              VBtn.mx-5(to="/login") 立即註冊
+            H5.mb-5 已有帳號嗎?
+              VBtn.mx-5(to="/login") 立即登入
             VSheet(max-width="300" class="mx-auto")
               VForm(:disabled="isSubmitting" @submit.prevent="submit")
                 VTextField(

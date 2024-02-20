@@ -67,17 +67,6 @@ VDialog(v-model="dialog" persistent width="500px")
           v-model="description.value.value"
           :error-messages="description.errorMessage.value"
         )
-        //- VFileInput(
-        //-   v-model="fileRecords"
-        //-   v-model:rawModelValue="rawFileRecords"
-        //-   accept="image/jpeg,image/png"
-        //-   deletable
-        //-   :error-text="{type: '檔案格式不支援', size: '檔案超過 1MB 大小限制'}"
-        //-   help-text="選擇檔案或拖曳到這裡"
-        //-   :max-files="1"
-        //-   max-size="1MB"
-        //-   ref="fileAgent"
-        //- )
         VueFileAgent(
           v-model="fileRecords"
           v-model:rawModelValue="rawFileRecords"
@@ -101,9 +90,10 @@ import * as yup from 'yup'
 import { useForm, useField } from 'vee-validate'
 import { useApi } from '@/composables/axios'
 // import { useSnackbar } from 'vuetify-use-dialog'
+import Swal from 'sweetalert2'
+// 圖片上傳套件
 import { VueFileAgent } from '@boindil/vue-file-agent-next'
 import '@boindil/vue-file-agent-next/dist/vue-file-agent-next.css'
-import Swal from 'sweetalert2'
 
 const { apiAuth } = useApi()
 // const createSnackbar = useSnackbar()

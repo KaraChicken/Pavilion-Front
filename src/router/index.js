@@ -86,6 +86,16 @@ const routes = [
           login: false,
           admin: false
         }
+      },
+      {
+        path: 'cart',
+        name: 'Cart',
+        component: () => import('@/views/front/CartView.vue'),
+        meta: {
+          title: '炙醉亭 | 購物車',
+          login: false,
+          admin: false
+        }
       }
     ]
   },

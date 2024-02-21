@@ -112,7 +112,7 @@ const routes = [
         name: 'Orders',
         component: () => import('@/views/front/OrdersView.vue'),
         meta: {
-          title: '炙醉亭 | 購物車',
+          title: '炙醉亭 | 訂餐紀錄',
           login: true,
           admin: false
         }

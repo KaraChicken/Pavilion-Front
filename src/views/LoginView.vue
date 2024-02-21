@@ -2,7 +2,6 @@
 VCantainer
   VRow(style="height: 100%;")
     VCol(cols="12" class="d-flex justify-center align-center")
-      //- background-color: #CAAD5F;
       Div.pa-5(style="width: 75rem; height: 43.75rem; border-radius: 20px; background-color: #CAAD5F;" )
         H1.text-center.mb-10(style="color: #261E47; ") 同道相邀
         Div.d-flex.justify-center(style="height: calc(100% - (88px * 2));")
@@ -88,5 +87,4 @@ const submit = handleSubmit(async (values) => {
 .bgLogin
   width: 240px
   height: 484px
-VCard
 </style>

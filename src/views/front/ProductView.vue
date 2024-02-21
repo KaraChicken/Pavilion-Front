@@ -72,14 +72,14 @@ const submit = handleSubmit(async (values) => {
     Swal.fire({
       icon: 'error',
       title: text,
-      showConfirmButton: true
+      confirmButtonText: "確定"
     })
   }
 })
 
 onMounted(async () => {
   try {
-    const { data } = await api.get('/products' + route.params.id)
+    const { data } = await api.get('/products/' + route.params.id)
     product.value._id = data.result._id
     product.value.name = data.result.name
     product.value.price = data.result.price
@@ -90,7 +90,13 @@ onMounted(async () => {
 
     document.title = `購物網 | ${product.value.name}`
   } catch (error) {
-    cons
+    const text = error?.response?.data?.message || '發生錯誤，請稍後再試'
+    Swal.fire({
+      icon: 'error',
+      title: text,
+      confirmButtonText: "確定"
+    })
+    router.push('/')
   }
 })
 </script>

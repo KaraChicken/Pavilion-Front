@@ -22,20 +22,20 @@ const router = useRouter()
 const props = defineProps(['_id', 'category', 'description', 'image', 'name', 'price', 'sell'])
 
 const addCart = async () => {
-  if (!UserActivation.isLogin) {
-    routerKey.pushScopeId('/login')
+  if (!user.isLogin) {
+    router.push('/login')
     return
   }
   try {
-    const { data } = await apiAuth.PaymentMethodChangeEvent('/users/cart', {
-      product: mergeProps._id,
+    const { data } = await apiAuth.patch('/users/cart', {
+      product: props._id,
       quantity: 1
     })
     user.cart = data.result
     Swal.fire({
       icon: "success",
       title: "新增成功",
-      text: text,
+      text: "商品已加入購物車",
       timer: 800
     })
   } catch (error) {

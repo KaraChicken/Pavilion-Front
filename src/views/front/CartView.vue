@@ -1,22 +1,22 @@
 <template lang="pug">
 VContainer
   VCol(cols="12")
-    H1 購物車
-    VDivider
-    VCol(cols="12")
-      VDataTable(:items="cart" :headers="headers")
-        Template(#[`item.product.name`]="{ item }")
-          Span(v-if="item.product.sell") {{ item.product.name }}
-          Span.text-red.text-decoration-line-through(v-else) {{ item.product.name }} (已下架)
-        Template(#[`item.product.name`]="{ item }")
-          VBtn(variant="text" icon="mdi-minus" color="red" @click="addCart(item.product._id, -1)")
-          | {{ item.quantity }}
-          VBtn(variant="text" icon="mdi-plus" color="green" @click="addCart(item.product._id, -1)")
-        Template(#[`item.product.name`]="{ item }")
-          VBtn(variant="text" icon="mdi-plus" color="green" @click="addCart(item.product._id, item.quantity * -1)")
-    VCol.text-center(cols="12")
-      P 總金額: {{ total }}
-      VBtn(color="green" :disabled="!canCheckout" :loading="isSubmitting" @click="checkout") 結帳
+    h1 購物車
+  VDivider
+  VCol(cols="12")
+    VDataTable(:items="cart" :headers="headers")
+      template(#[`item.product.name`]="{ item }")
+        span(v-if="item.product.sell") {{ item.product.name }}
+        span.text-red.text-decoration-line-through(v-else) {{ item.product.name }} (已下架)
+      template(#[`item.quantity`]="{ item }")
+        VBtn(variant="text" icon="mdi-minus" color="red" @click="addCart(item.product._id, -1)")
+        | {{ item.quantity }}
+        VBtn(variant="text" icon="mdi-plus" color="green" @click="addCart(item.product._id, 1)")
+      template(#[`item.action`]="{ item }")
+        VBtn(variant="text" icon="mdi-delete" color="red" @click="addCart(item.product._id, item.quantity * -1)")
+  VCol.text-center(cols="12")
+    P 總金額: {{ total }}
+    VBtn(color="green" :disabled="!canCheckout" :loading="isSubmitting" @click="checkout") 結帳
 </template>
 
 <script setup>
@@ -24,13 +24,13 @@ import { ref, onMounted, computed } from 'vue'
 import { useApi } from '@/composables/axios'
 import { useUserStore } from '@/store/user'
 import { useRouter } from 'vue-router'
-
 import Swal from 'sweetalert2'
 
 const { apiAuth } = useApi()
 const user = useUserStore()
 const router = useRouter()
 
+const cart = ref([])
 const headers = [
   { title: '商品名稱', key: 'product.name' },
   { title: '單價', key: 'product.price' },
@@ -39,11 +39,11 @@ const headers = [
   { title: '操作', key: 'action' }
 ]
 
-// const total = computed(() => {
-//   return createApp.value.reduce((total, current) => {
-//     return total + current.quantity * current.product.price
-//   }, 0)
-// })
+const total = computed(() => {
+  return cart.value.reduce((total, current) => {
+    return total + current.quantity * current.product.price
+  }, 0)
+})
 
 const canCheckout = computed(() => {
   return cart.value.length > 0 && !cart.value.some(item => !item.product.sell)
@@ -63,7 +63,7 @@ const addCart = async (product, quantity) => {
     Swal.fire({
       icon: 'success',
       title: '修改成功',
-      timer: 2000
+      timer: 2500
     })
     const idx = cart.value.findIndex(item => item.product._id === product)
     cart.value[idx].quantity += quantity
@@ -75,7 +75,7 @@ const addCart = async (product, quantity) => {
     Swal.fire({
       icon: 'error',
       title: text,
-      confirmButtonText: "確定"
+      confirmButtonText: '確定'
     })
   }
 }
@@ -90,14 +90,14 @@ const checkout = async () => {
     Swal.fire({
       icon: 'success',
       title: '結帳成功',
-      timer: 800
+      timer: 2500
     })
   } catch (error) {
     const text = error?.response?.data?.message || '發生錯誤，請稍後再試'
     Swal.fire({
       icon: 'error',
       title: text,
-      confirmButtonText: "確定"
+      confirmButtonText: '確定'
     })
   }
   isSubmitting.value = false
@@ -112,7 +112,7 @@ onMounted(async () => {
     Swal.fire({
       icon: 'error',
       title: text,
-      confirmButtonText: "確定"
+      confirmButtonText: '確定'
     })
   }
 })

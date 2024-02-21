@@ -88,12 +88,32 @@ const routes = [
         }
       },
       {
+        path: 'products/:id',
+        name: 'Product',
+        component: () => import('@/views/front/ProductView.vue'),
+        meta: {
+          title: '炙醉亭 | 商品資訊',
+          login: true,
+          admin: false
+        }
+      },
+      {
         path: 'cart',
         name: 'Cart',
         component: () => import('@/views/front/CartView.vue'),
         meta: {
           title: '炙醉亭 | 購物車',
-          login: false,
+          login: true,
+          admin: false
+        }
+      },
+      {
+        path: 'orders',
+        name: 'Orders',
+        component: () => import('@/views/front/OrdersView.vue'),
+        meta: {
+          title: '炙醉亭 | 購物車',
+          login: true,
           admin: false
         }
       }

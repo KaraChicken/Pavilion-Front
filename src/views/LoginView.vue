@@ -3,17 +3,17 @@ VCantainer
   VRow(style="height: 100%;")
     VCol(cols="12" class="d-flex justify-center align-center")
       //- background-color: #CAAD5F;
-      Div(class="pa-5" style="width: 75rem; height: 43.75rem; border-radius: 20px; background-color: #CAAD5F;" )
-        H1(class="text-center mb-10" style="color: #261E47;") 同道相邀
-        Div(class="d-flex justify-center align-center")
-          VCard(class="px-6 py-8" max-width="344")
-            H5.mb-5 沒有帳號嗎?
-              VBtn.mx-5(to="/register") 立即註冊
-            VSheet(max-width="300" class="mx-auto")
+      Div.pa-5(style="width: 75rem; height: 43.75rem; border-radius: 20px; background-color: #CAAD5F;" )
+        H1.text-center.mb-10(style="color: #261E47; ") 同道相邀
+        Div.d-flex.justify-center(style="height: calc(100% - (88px * 2));")
+          VCard.px-6.py-8(max-width="344" color="text01")
+            H3.mb-5 沒有帳號嗎?
+              VBtn.mx-5(to="/register" style="background-color: #CAAD5F; font-weight: bold;") 立即註冊
+            VSheet.bgLogin(max-width="300" class="mx-auto" color="text01" style="height: calc(100% - 56px * 2);")
               VForm(validate-on="submit lazy" @submit.prevent="submit")
                 VTextField(v-model="account.value.value" :rules="rules" label="帳號")
                 VTextField(v-model="password.value.value" :rules="rules" label="密碼")
-                VBtn(:loading="loading" type="submit" block class="mt-2" text="登入")
+                VBtn.login(:loading="loading" type="submit" block text="登入" style="background-color: #CAAD5F; font-weight: bold;")
 </template>
 
 <script setup>
@@ -80,3 +80,13 @@ const submit = handleSubmit(async (values) => {
   }
 })
 </script>
+
+<style scoped lang="sass">
+
+.login
+  margin: 76px 76px auto auto
+.bgLogin
+  width: 240px
+  height: 484px
+VCard
+</style>

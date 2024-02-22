@@ -225,7 +225,7 @@ const tableHeaders = [
   { title: '圖片', align: 'center', sortable: false, key: 'image' },
   { title: '名稱', align: 'center', sortable: true, key: 'name' },
   { title: '價格', align: 'center', sortable: true, key: 'price' },
-  // { title: '說明', align: 'center', sortable: true, key: 'description' },
+  { title: '說明', align: 'center', sortable: true, key: 'description' },
   { title: '分類', align: 'center', sortable: true, key: 'category' },
   { title: '上架', align: 'center', sortable: true, key: 'sell' },
   { title: '編輯', align: 'center', sortable: false, key: 'edit' }

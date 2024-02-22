@@ -56,11 +56,11 @@ const drawer = ref(false)
 // 導覽列項目
 const navItems = computed(() => {
     return [
-    { to: "/news", text: "最新消息", icon: "mdi-newspaper", show: (!user.isLogin || user.isLogin) || user.isAdmin },
+    // { to: "/news", text: "最新消息", icon: "mdi-newspaper", show: (!user.isLogin || user.isLogin) || user.isAdmin },
     { to: "/map", text: "地圖", icon: "mdi-map-marker", show: (!user.isLogin || user.isLogin) && !user.isAdmin },
     { to: "/about", text: "關於", icon: "mdi-folder-account", show: (!user.isLogin || user.isLogin) && !user.isAdmin },
     { to: "/", text: "首頁", icon: "mdi-home", show: (!user.isLogin || user.isLogin) && !user.isAdmin },
-    { to: "/reservation", text: "訂位", icon: "mdi-account-group", show: user.isLogin && !user.isAdmin },
+    // { to: "/reservation", text: "訂位", icon: "mdi-account-group", show: user.isLogin && !user.isAdmin },
     { to: "/menu", text: "訂購", icon: "mdi-list-box", show: user.isLogin || user.isAdmin },
     { to: "/cart", text: "購物車", icon: "mdi-cart", show: user.isLogin },
     { to: "/orders", text: "訂單", icon: "mdi-list-status", show: user.isLogin || user.isAdmin },

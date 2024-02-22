@@ -52,6 +52,13 @@ const password = useField('password')
 
 const submit = handleSubmit(async (values) => {
   try {
+    await Swal.fire({
+      position: "center",
+      icon: "success",
+      title: "登入成功",
+      showConfirmButton: false,
+      timer: 1500
+    })
     const { data } = await api.post('/users/login', {
       account: values.account,
       password: values.password
@@ -60,13 +67,7 @@ const submit = handleSubmit(async (values) => {
     sessionStorage.setItem('帳號：' + data.result.account, data.result.token)
     user.login(data.result)
     console.log(data.result)
-    Swal.fire({
-      position: "center",
-      icon: "success",
-      title: "登入成功",
-      showConfirmButton: false,
-      timer: 1500
-    });
+
     router.push('/')
   } catch (error) {
     console.log(error)

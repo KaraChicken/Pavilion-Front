@@ -65,7 +65,7 @@ const navItems = computed(() => {
     { to: "/cart", text: "購物車", icon: "mdi-cart", show: user.isLogin },
     { to: "/orders", text: "訂單", icon: "mdi-list-status", show: user.isLogin || user.isAdmin },
     { to: "/login", text: "登入", icon: "mdi-login", show: !user.isLogin },
-    { to: "/register", text: "註冊", icon: "mdi-account-plus", show: !user.isLogin },
+    // { to: "/register", text: "註冊", icon: "mdi-account-plus", show: !user.isLogin },
     { to: '/admin', text: '管理', icon: "mdi-cog", show: user.isLogin && user.isAdmin }
   ]
 })

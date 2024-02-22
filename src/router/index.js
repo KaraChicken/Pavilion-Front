@@ -70,7 +70,7 @@ const routes = [
       {
         path: 'login',
         name: 'Login',
-        component: () => import('@/views/LoginView.vue'),
+        component: () => import('@/views/front/LoginView.vue'),
         meta: {
           title: '炙醉亭 | 同道相邀',
           login: false,
@@ -80,7 +80,7 @@ const routes = [
       {
         path: 'register',
         name: 'Register',
-        component: () => import('@/views/RegisterView.vue'),
+        component: () => import('@/views/front/RegisterView.vue'),
         meta: {
           title: '炙醉亭 | 同道相邀',
           login: false,

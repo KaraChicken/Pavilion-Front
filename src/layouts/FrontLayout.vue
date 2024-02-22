@@ -81,7 +81,7 @@ const logout = async () => {
       denyButtonText: `取消`
     }).then(async (result) => {
       if (result.isConfirmed) {
-        Swal.fire({
+        await Swal.fire({
           title: "登出成功",
           text: "您即將登出...",
           icon: "success",

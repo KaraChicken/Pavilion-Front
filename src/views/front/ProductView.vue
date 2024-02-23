@@ -3,7 +3,7 @@ VContainer
   VCol(cols="12")
     H1 {{ product.name }}
   VCol(cols="12" md="6")
-    VImg(:src="product,image")
+    VImg(:src="product.image")
   VCol(cols="12" md="6")
     P ${{ product.price }}
     P(style="width-space: pre;") {{ product.description }}

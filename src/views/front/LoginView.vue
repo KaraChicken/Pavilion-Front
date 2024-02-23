@@ -63,10 +63,8 @@ const submit = handleSubmit(async (values) => {
       account: values.account,
       password: values.password
     })
-    // 儲存 token 到 StorageStorage
-    sessionStorage.setItem('帳號：' + data.result.account, data.result.token)
     user.login(data.result)
-    console.log(data.result)
+    // console.log(data.result) 測試用，註解拿掉會洩漏帳號資料
 
     router.push('/')
   } catch (error) {

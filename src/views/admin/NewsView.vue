@@ -29,8 +29,8 @@ VContainer
             @click:append="tableApplySearch"
             @keydown.enter="tableApplySearch"
           )
-        template(#[`item.image`]="{ item }")
-          VImg(:src="item.image" height="50px")
+        template(#[`item.group`]="{ item }")
+          | {{ item.group }}
         template(#[`item.poText`]="{ item }")
           VIcon(icon="mdi-check" v-if="item.poText")
         template(#[`item.edit`]="{ item }")
@@ -42,14 +42,14 @@ VDialog(v-model="dialog" persistent width="500px")
       VCardText
         VTextField(
           label="標題"
-          v-model="name.value.value"
-          :error-messages="name.errorMessage.value"
+          v-model="title.value.value"
+          :error-messages="title.errorMessage.value"
         )
         VSelect(
           label="類別"
           :items="categories"
-          v-model="category.value.value"
-          :error-messages="category.errorMessage.value"
+          v-model="group.value.value"
+          :error-messages="group.errorMessage.value"
         )
         VCheckbox(
           label="上架"
@@ -58,8 +58,8 @@ VDialog(v-model="dialog" persistent width="500px")
         )
         VTextarea(
           label="內容"
-          v-model="description.value.value"
-          :error-messages="description.errorMessage.value"
+          v-model="content.value.value"
+          :error-messages="content.errorMessage.value"
         )
       VCardActions
         VSpacer
@@ -87,10 +87,9 @@ const dialogId = ref('')
 const openDialog = (item) => {
   if (item) {
     dialogId.value = item._id
-    name.value.value = item.name
-    price.value.value = item.price
-    description.value.value = item.description
-    category.value.value = item.category
+    title.value.value = item.title
+    group.value.value = item.group
+    content.value.value = item.content
     poText.value.value = item.poText
   } else {
     dialogId.value = ''
@@ -107,63 +106,57 @@ const closeDialog = () => {
 const categories = ['公休', '活動', '其他']
 // 表單驗證
 const schema = yup.object({
-  name: yup
+  title: yup
     .string()
-    .required('缺少標題'),
-  price: yup
-    .number()
-    .typeError('商品價格格式錯誤')
-    .required('缺少商品價格')
-    .min(0, '商品價格不能小於 0'),
-  description: yup
+    .required('請輸入標題')
+    .min(2, '標題太短')
+    .max(50, '標題太長'),
+  group: yup
     .string()
-    .required('缺少內容'),
-  category: yup
+    .required('請選擇類別')
+    .oneOf(['公休', '活動', '其他'], '類別選擇錯誤'),
+  content: yup
     .string()
-    .required('缺少分類')
-    .test('isCategory', '商品分類錯誤', value => categories.includes(value)),
+    .required('請輸入內容')
+    .min(10, '內容太短')
+    .max(100, '內容太長'),
   poText: yup
     .boolean()
+    .required('請選擇貼文上架狀態')
 })
 const { handleSubmit, isSubmitting, resetForm } = useForm({
   validationSchema: schema,
   initialValues: {
-    name: '',
-    price: 0,
-    description: '',
-    category: '',
-    poText: false
+    group: '',
+    title: '',
+    content: '',
+    poText: false,
+    _id: ''
   }
 })
 
-const name = useField('name')
-const price = useField('price')
-const description = useField('description')
-const category = useField('category')
-const poText = useField('poText')
-
-const fileRecords = ref([])
-const rawFileRecords = ref([])
+const title = useField('title') 
+const content = useField('content') 
+const group = useField('group') 
+const poText = useField('poText') 
 
 const submit = handleSubmit(async (values) => {
-  if (fileRecords.value[0]?.error) return
-  if (dialogId.value === '' && fileRecords.value.length === 0) return
+  // console.log(values)
   try {
-    // 建立 FormData 物件
-    // 使用 fd.append(欄位, 值) 將資料放進去
-    const fd = new FormData()
-    for (const key in values) {
-      fd.append(key, values[key])
-    }
-
-    if (fileRecords.value.length > 0) {
-      fd.append('image', fileRecords.value[0].file)
-    }
-
     if (dialogId.value === '') {
-      await apiAuth.post('/news', fd)
+      await apiAuth.post('/news', {
+        group: values.group,
+        title: values.title,
+        content: values.content,
+        poText: values.poText
+      })
     } else {
-      await apiAuth.patch('/news/' + dialogId.value, fd)
+      await apiAuth.patch('/news/' + dialogId.value, {
+        group: values.group,
+        title: values.title,
+        content: values.content,
+        poText: values.poText
+      })
     }
     const text = dialogId.value === '' ? '新增成功' : '編輯成功'
     Swal.fire({
@@ -171,7 +164,7 @@ const submit = handleSubmit(async (values) => {
       icon: "success",
       title: text,
       showConfirmButton: false,
-      // timer: 1500
+      timer: 1500
     })
     closeDialog()
     tableApplySearch()
@@ -200,10 +193,10 @@ const tablePage = ref(1)
 const tableProducts = ref([])
 // 表格欄位設定
 const tableHeaders = [
-  { title: '類別', align: 'center', sortable: true, key: 'description' },
-  { title: '標題', align: 'center', sortable: false, key: 'image' },
-  { title: '內容', align: 'center', sortable: true, key: 'name' },
-  { title: '上架狀態', align: 'center', sortable: true, key: 'price' },
+  { title: '類別', align: 'center', sortable: true, key: 'group' },
+  { title: '標題', align: 'center', sortable: false, key: 'title' },
+  { title: '內容', align: 'center', sortable: true, key: 'content' },
+  { title: '上架狀態', align: 'center', sortable: true, key: 'poText' },
   { title: '編輯', align: 'center', sortable: false, key: 'edit' }
 ]
 // 表格載入狀態

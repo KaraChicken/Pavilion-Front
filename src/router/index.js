@@ -93,7 +93,7 @@ const routes = [
         component: () => import('@/views/front/ProductView.vue'),
         meta: {
           title: '炙醉亭 | 商品資訊',
-          login: true,
+          login: false,
           admin: false
         }
       },
@@ -115,6 +115,16 @@ const routes = [
           title: '炙醉亭 | 訂餐紀錄',
           login: true,
           admin: false
+        }
+      },
+      {
+        path: 'news',
+        name: 'News',
+        component: () => import('@/views/front/NewsView.vue'),
+        meta: {
+          title: '消息公布',
+          login: true,
+          admin: true
         }
       }
     ]

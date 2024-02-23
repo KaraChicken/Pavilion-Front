@@ -56,7 +56,7 @@ const drawer = ref(false)
 // 導覽列項目
 const navItems = computed(() => {
     return [
-    // { to: "/news", text: "最新消息", icon: "mdi-newspaper", show: (!user.isLogin || user.isLogin) || user.isAdmin },
+    { to: "/news", text: "最新消息", icon: "mdi-newspaper", show: (!user.isLogin || user.isLogin) || user.isAdmin },
     { to: "/map", text: "地圖", icon: "mdi-map-marker", show: (!user.isLogin || user.isLogin) && !user.isAdmin },
     { to: "/about", text: "關於", icon: "mdi-folder-account", show: (!user.isLogin || user.isLogin) && !user.isAdmin },
     { to: "/", text: "首頁", icon: "mdi-home", show: (!user.isLogin || user.isLogin) && !user.isAdmin },

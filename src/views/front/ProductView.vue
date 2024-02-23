@@ -10,9 +10,9 @@ VContainer
     VForm(:disabled="isSubmitting" @submit.prevent="submit")
       VTextField(type="number" min="0" v-model.number="quantity.value.value" :error-messages="quantity.errorMessage.value")
       VBtn(type="submit" prepend-icon="mdi-cart" :loading="isSubmitting") 加入購物車
-VOverlay.align-center.justify-center.text-center(:model-value="!product.sell" persistent)
+VOverlay.align-center.justify-center.text-center(:model-value="!product.sell")
   H1.text-red.text-h1 已下架
-  VBtn(to="/" coloor="green") 回首頁
+  VBtn(to="/" color="green") 回首頁
 </template>
 
 <script setup>
@@ -49,7 +49,7 @@ const { isSubmitting, handleSubmit } = useForm({
     quantity: 1
   }
 })
-const quantity = useField('quantity')
+const quantity = useField('quantity', schema)
 
 const submit = handleSubmit(async (values) => {
   if (!user.isLogin) {

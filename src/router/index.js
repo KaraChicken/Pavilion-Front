@@ -1,5 +1,5 @@
 // Composables
-import { createRouter, createWebHistory, START_LOCATION } from 'vue-router'
+import { createRouter, createWebHashHistory, START_LOCATION } from 'vue-router'
 import { useUserStore } from '@/store/user'
 
 const routes = [
@@ -178,7 +178,7 @@ const routes = [
 ]
 
 const router = createRouter({
-  history: createWebHistory(process.env.BASE_URL),
+  history: createWebHashHistory(process.env.BASE_URL),
   routes
 })
 

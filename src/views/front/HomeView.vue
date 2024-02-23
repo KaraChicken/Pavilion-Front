@@ -15,9 +15,9 @@ Swiper.mySwiper(
     :navigation="true"
     :modules="modules"
 )
-  //- SwiperSlide(v-for="Item in slideItem" :key="slideItem.img")
-  //-   Img(:src="`../src/assets/BBQ/${Item.img}.jpg`")
-  //-   Div.slideText {{ slideItem.text }}
+  SwiperSlide(v-for="Item in slideItem" :key="slideItem.img")
+    Img(:src="`../src/assets/BBQ/${Item.img}.jpg`")
+    Div.slideText {{ slideItem.text }}
 
 //- P 融合客棧的獨特元素，精心特調的燒烤醬料宛如一瓶難得的陳年美酒，經過大廚巧妙調製，
 //-   | 猶如客棧內的珍貴珍藏，每一滴都沉澱著風華絕代的瑰麗故事。

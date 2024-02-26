@@ -123,8 +123,8 @@ const routes = [
         component: () => import('@/views/front/NewsView.vue'),
         meta: {
           title: '消息公布',
-          login: true,
-          admin: true
+          login: false,
+          admin: false
         }
       }
     ]

@@ -12,7 +12,6 @@ Swiper.mySwiper(
       delay: 3500,
       disableOnInteraction: false,
     }
-    :navigation="true"
     :modules="modules"
 )
   SwiperSlide(v-for="Item in slideItem" :key="slideItem.img")
@@ -31,9 +30,9 @@ Swiper.mySwiper(
   import 'swiper/css/pagination';
   import 'swiper/css/navigation';
   import 'swiper/css/scrollbar';
-  import { Autoplay, Scrollbar, Pagination, Navigation } from 'swiper/modules';
+  import { Autoplay, Scrollbar, Pagination } from 'swiper/modules';
 
-  const modules = [Autoplay, Scrollbar, Pagination, Navigation];
+  const modules = [Autoplay, Scrollbar, Pagination];
 
   const slideItem = [
     { img: 1 },

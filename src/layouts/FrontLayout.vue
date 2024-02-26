@@ -2,7 +2,21 @@
 //- 手機版側邊欄
 VNavigationDrawer(v-model="drawer" temporary location="right" v-if="isMobile" color="secondary")
   VList(nav)
-    template(v-for="item in navItems" :key="item.to" color="text01")
+    template(v-for="item in newsItems" :key="item.to" color="text01")
+      VListItem(:to="item.to" v-if="item.show")
+        template(#prepend)
+          VIcon(:icon="item.icon")
+        template(#append)
+          VBadge(color="error" :content="user.cart" v-if="item.to === '/cart'" inline)
+          VAppBarTitle {{ item.text }}
+    template(v-for="item in newsItems" :key="item.to" color="text01")
+      VListItem(:to="item.to" v-if="item.show")
+        template(#prepend)
+          VIcon(:icon="item.icon")
+        template(#append)
+          VBadge(color="error" :content="user.cart" v-if="item.to === '/cart'" inline)
+          VAppBarTitle {{ item.text }}
+    template(v-for="item in cartItems" :key="item.to" color="text01")
       VListItem(:to="item.to" v-if="item.show")
         template(#prepend)
           VIcon(:icon="item.icon")
@@ -15,21 +29,33 @@ VNavigationDrawer(v-model="drawer" temporary location="right" v-if="isMobile" co
       template(#append)
         VAppBarTitle 登出
 //- 導覽列
-VAppBar(color="secondary")
+VImg#logo(src="../../src/assets/BackGround/logo.png")
+Div#eaves(style="background: url('../../src/assets/BackGround/bg1.png')")
+Div.bambooLeft(style="background: url('../../src/assets/BackGround/bg2.png') no-repeat center/cover")
+Div.bambooRight(style="background: url('../../src/assets/BackGround/bg2.png') no-repeat center/cover")
+Div.bambooCenterLeft(style="background: url('../../src/assets/BackGround/bg2.png') no-repeat center/cover")
+Div.bambooCenterRight(style="background: url('../../src/assets/BackGround/bg2.png') no-repeat center/cover")
+//- VImg(src="../../src/assets/Chinese_style_eaves.png" style="position:fixed;top:0;left:0;width:100%;z-index:10000")
+VAppBar(color="secondary" style="position:fixed;top:45px;")
   //- 手機版
   template(v-if="isMobile")
     VContainer.d-flex.align-center.justify-end
       VAppBarNavIcon(@click="drawer = true" color="text01")
   template(v-else)
     VContainer.d-flex.align-center.justify-center
-      template(v-for="button in navItems" :key="button.to")
+      template(v-for="button in newsItems" :key="button.to")
+        VBtn.mx-1(:to="button?.to" color="text01" title="button.text" v-if="button.show")
+          VAppBarTitle() {{ button.text }}
+    VContainer.d-flex.align-center.justify-center
+      template(v-for="button in cartItems" :key="button.to")
         VBtn.mx-1(:to="button?.to" color="text01" title="button.text" v-if="button.show")
           VIcon(:icon="button.icon")
           VAppBarTitle() {{ button.text }}
-      VBtn.mx-1(@click="logout" color="text01" title="button.text" v-if="user.isLogin")
-        template(#prepend)
-          VIcon(icon="mdi-logout")
-          VAppBarTitle 登出
+      template.d-flex.justify-end(v-if="user.isLogin")
+        VBtn.mx-1(@click="logout" color="text01" title="button.text")
+          template(#prepend)
+            VIcon(icon="mdi-logout")
+            VAppBarTitle 登出
 //- 內容
 VMain()
   RouterView(:key="$route.path")
@@ -54,13 +80,18 @@ const isMobile = computed(() => mobile.value)
 const drawer = ref(false)
 
 // 導覽列項目
-const navItems = computed(() => {
-    return [
-    // { to: "/news", text: "最新消息", icon: "mdi-newspaper", show: (!user.isLogin || user.isLogin) || user.isAdmin },
-    { to: "/map", text: "地圖", icon: "mdi-map-marker", show: (!user.isLogin || user.isLogin) && !user.isAdmin },
-    { to: "/about", text: "關於", icon: "mdi-folder-account", show: (!user.isLogin || user.isLogin) && !user.isAdmin },
-    { to: "/", text: "首頁", icon: "mdi-home", show: (!user.isLogin || user.isLogin) && !user.isAdmin },
-    // { to: "/reservation", text: "訂位", icon: "mdi-account-group", show: user.isLogin && !user.isAdmin },
+const newsItems = computed(() => {
+  return [
+    { to: "/", text: "首頁", icon: "mdi-home", show: true },
+    { to: "/news", text: "最新消息", icon: "mdi-newspaper", show: true },
+    { to: "/map", text: "地圖", icon: "mdi-map-marker", show: true },
+    { to: "/about", text: "關於本棧", icon: "mdi-folder-account", show: true },
+  ]
+})
+
+const cartItems = computed(() => {
+  return [
+    // { to: "/reservation", text: "訂位", icon: "mdi-account-group", show: user.isLogin },
     { to: "/menu", text: "訂購", icon: "mdi-list-box", show: user.isLogin || user.isAdmin },
     { to: "/cart", text: "購物車", icon: "mdi-cart", show: user.isLogin },
     { to: "/orders", text: "訂單", icon: "mdi-list-status", show: user.isLogin || user.isAdmin },
@@ -112,3 +143,57 @@ const logout = async () => {
   }
 }
 </script>
+
+<style scoped lang="sass">
+.bamboo
+  width:500px
+  height:500px 
+  z-index: 9999
+  position: fixed
+  opacity: 80%
+  pointer-events: none
+  filter: drop-shadow(0 0 0 rgba(0,0,0,0.5))
+
+.bambooLeft
+  @extend .bamboo
+  left: -100px
+  top:-50px
+  rotate: 30deg
+
+.bambooRight
+  @extend .bamboo
+  right: -100px
+  top:-50px
+  rotate: -250deg
+.bambooCenterLeft
+  @extend .bamboo
+  width: 200px
+  top: -20%
+  left: 38%
+  rotate: -270deg
+  transform: rotateX(180deg)
+
+.bambooCenterRight
+  @extend .bamboo
+  width: 200px
+  top: -20%
+  left: 50%
+  rotate: -270deg
+
+#eaves
+  width: 100%
+  height: 100px
+  position: fixed
+  top: -55px
+  z-index: 2000
+  filter: drop-shadow(10px 10px 10px rgba(0,0,0,0.5))
+  background-repeat: repeat-x
+
+#logo
+  z-index: 9999
+  width: 130px
+  position: fixed
+  left: 50%
+  top:10px
+  transform: translateX(-50%)
+</style>

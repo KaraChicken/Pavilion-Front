@@ -3,7 +3,8 @@ VCantainer
   VRow(style="height: 100%;")
     VCol(cols="12" class="d-flex justify-center align-center")
       Div.pa-5.overflow( style="width: 75rem; height: 43.75rem; border-radius: 20px; background-color: #CAAD5F;" )
-        H1(class="text-center mb-10" style="color: #261E47;") 江湖緣起
+        Div.text-center.mb-10
+          H1(style="color: #261E47;") 江湖緣起
         Div(class="text-center text-h4")
           P 江湖間有一處獨特的聚點，名為「炙醉亭」。
           P 這是一座隱匿在武林深處的小亭，門前總是瀰漫著烤肉的誘人香氣，亭內的燈光昏黃，迎接著武者們歸來的腳步。

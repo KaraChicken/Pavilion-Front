@@ -1,10 +1,13 @@
 <template lang="pug">
 VCantainer
-  VRow.justify-center.px-15
-    VCol.text-center.my-5(cols="12")
-      H1 英雄食典
-    VCol(cols="12" md="6" lg="3" v-for="product in products" :key="product._id")
-      ProductCard(v-bind="product")
+  VRow(style="height: 100%;")
+    VCol(cols="12" class="d-flex justify-center align-center")
+      Div.pa-5.overflow( style="width: 75rem; height: 43.75rem; border-radius: 20px; background-color: #CAAD5F;" )
+        Div.text-center.mb-10
+          H1(style="color: #261E47;") 英雄食典
+          VRow
+            VCol(cols="12" md="6" lg="3" v-for="product in products" :key="product._id")
+              ProductCard(v-bind="product")
 </template>
 
 <script setup>
@@ -44,4 +47,9 @@ onMounted(async() => {
 <style scoped lang="sass">
 .product-card
   opacity: 0
+
+.overflow
+  overflow: scroll
+.overflow::-webkit-scrollbar 
+  display: none
 </style>

@@ -30,13 +30,12 @@ VNavigationDrawer(v-model="drawer" temporary location="right" v-if="isMobile" co
         VAppBarTitle 登出
 //- 導覽列
 VImg#logo(src="@/assets/BackGround/logoBanner.png")
-Div#eaves(style="background: url('/src/assets/BackGround/bg1.png')")
-Div.bambooLeft(id="leaf1" style="background: url('/src/assets/BackGround/bg2.png') no-repeat center/cover")
-Div.bambooRight(style="background: url('/src/assets/BackGround/bg2.png') no-repeat center/cover")
-Div.bambooCenterLeft(style="background: url('/src/assets/BackGround/bg2.png') no-repeat center/cover")
-Div.bambooCenterLeft2(style="background: url('/src/assets/BackGround/bg2.png') no-repeat center/cover")
-Div.bambooCenterRight(style="background: url('/src/assets/BackGround/bg2.png') no-repeat center/cover")
-//- VImg(src="../../src/assets/Chinese_style_eaves.png" style="position:fixed;top:0;left:0;width:100%;z-index:10000")
+Div#eaves(style="background: url('../../src/assets/BackGround/bg1.png')")
+VImg.bambooLeft(src='@/assets/BackGround/bg2.png')
+VImg.bambooRight(src='@/assets/BackGround/bg2.png')
+VImg.bambooCenterLeft(src='@/assets/BackGround/bg2.png')
+VImg.bambooCenterLeft2(src='@/assets/BackGround/bg2.png')
+VImg.bambooCenterRight(src='@/assets/BackGround/bg2.png')
 VAppBar(color="secondary" style="position:fixed;top:45px;")
   //- 手機版
   template(v-if="isMobile")
@@ -219,8 +218,8 @@ onMounted(()=>{
 .bambooCenterLeft
   @extend .bamboo
   width: 150px
-  top: 3%
-  left: 17%
+  top: 7%
+  left: 15%
   rotate: 75deg
   transform: rotateX(180deg)
 

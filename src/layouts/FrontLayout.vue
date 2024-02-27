@@ -29,11 +29,12 @@ VNavigationDrawer(v-model="drawer" temporary location="right" v-if="isMobile" co
       template(#append)
         VAppBarTitle 登出
 //- 導覽列
-VImg#logo(src="../../src/assets/BackGround/logo.png")
+VImg#logo(src="../../src/assets/BackGround/logoBanner.png")
 Div#eaves(style="background: url('../../src/assets/BackGround/bg1.png')")
-Div.bambooLeft(style="background: url('../../src/assets/BackGround/bg2.png') no-repeat center/cover")
+Div.bambooLeft(id="leaf1" style="background: url('../../src/assets/BackGround/bg2.png') no-repeat center/cover")
 Div.bambooRight(style="background: url('../../src/assets/BackGround/bg2.png') no-repeat center/cover")
 Div.bambooCenterLeft(style="background: url('../../src/assets/BackGround/bg2.png') no-repeat center/cover")
+Div.bambooCenterLeft2(style="background: url('../../src/assets/BackGround/bg2.png') no-repeat center/cover")
 Div.bambooCenterRight(style="background: url('../../src/assets/BackGround/bg2.png') no-repeat center/cover")
 //- VImg(src="../../src/assets/Chinese_style_eaves.png" style="position:fixed;top:0;left:0;width:100%;z-index:10000")
 VAppBar(color="secondary" style="position:fixed;top:45px;")
@@ -45,6 +46,7 @@ VAppBar(color="secondary" style="position:fixed;top:45px;")
     VContainer.d-flex.align-center.justify-center
       template(v-for="button in newsItems" :key="button.to")
         VBtn.mx-1(:to="button?.to" color="text01" title="button.text" v-if="button.show")
+          VIcon(:icon="button.icon")
           VAppBarTitle() {{ button.text }}
     VContainer.d-flex.align-center.justify-center
       template(v-for="button in cartItems" :key="button.to")
@@ -55,18 +57,19 @@ VAppBar(color="secondary" style="position:fixed;top:45px;")
         VBtn.mx-1(@click="logout" color="text01" title="button.text")
           template(#prepend)
             VIcon(icon="mdi-logout")
-            VAppBarTitle 登出
+            VAppBarTitle 我要登出
 //- 內容
 VMain()
   RouterView(:key="$route.path")
 </template>
 <script setup>
 import { useDisplay } from 'vuetify'
-import { ref, computed } from 'vue'
+import { ref, computed, onMounted } from 'vue'
 import { useUserStore } from '@/store/user'
 import { useApi } from '@/composables/axios'
 import { useRouter } from 'vue-router'
 import Swal from 'sweetalert2'
+import gsap from 'gsap'
 
 const { apiAuth } = useApi()
 const router = useRouter()
@@ -79,12 +82,13 @@ const isMobile = computed(() => mobile.value)
 // 手機版測欄開關
 const drawer = ref(false)
 
+
 // 導覽列項目
 const newsItems = computed(() => {
   return [
-    { to: "/", text: "首頁", icon: "mdi-home", show: true },
+    { to: "/", text: "回到首頁", icon: "mdi-home", show: true },
     { to: "/news", text: "最新消息", icon: "mdi-newspaper", show: true },
-    { to: "/map", text: "地圖", icon: "mdi-map-marker", show: true },
+    { to: "/map", text: "前往地圖", icon: "mdi-map-marker", show: true },
     { to: "/about", text: "關於本棧", icon: "mdi-folder-account", show: true },
   ]
 })
@@ -92,12 +96,12 @@ const newsItems = computed(() => {
 const cartItems = computed(() => {
   return [
     // { to: "/reservation", text: "訂位", icon: "mdi-account-group", show: user.isLogin },
-    { to: "/menu", text: "訂購", icon: "mdi-list-box", show: user.isLogin || user.isAdmin },
-    { to: "/cart", text: "購物車", icon: "mdi-cart", show: user.isLogin },
-    { to: "/orders", text: "訂單", icon: "mdi-list-status", show: user.isLogin || user.isAdmin },
-    { to: "/login", text: "登入", icon: "mdi-login", show: !user.isLogin },
+    { to: "/menu", text: "立即訂購", icon: "mdi-list-box", show: user.isLogin || user.isAdmin },
+    { to: "/cart", text: "來去購物", icon: "mdi-cart", show: user.isLogin },
+    { to: "/orders", text: "購物清單", icon: "mdi-list-status", show: user.isLogin && !user.isAdmin },
+    { to: "/login", text: "立即登入", icon: "mdi-login", show: !user.isLogin },
     // { to: "/register", text: "註冊", icon: "mdi-account-plus", show: !user.isLogin },
-    { to: '/admin', text: '管理', icon: "mdi-cog", show: user.isLogin && user.isAdmin }
+    { to: '/admin/adminProducts', text: '後台管理', icon: "mdi-cog", show: user.isLogin && user.isAdmin }
   ]
 })
 
@@ -142,6 +146,53 @@ const logout = async () => {
     });
   }
 }
+
+// 樹葉動畫
+// .bambooLeft
+// .bambooRight
+// .bambooCenterLeft
+// .bambooCenterLeft2
+// .bambooCenterRight
+onMounted(()=>{
+  // 定義Gsap共享屬性
+  const AnimationProps = {
+    duration: 5,
+    repeat: -1,
+    yoyo: true,
+    ease: 'power1.inOut'
+  }
+
+  gsap.to('.bambooLeft', {
+    ...AnimationProps,
+    x: 50,
+    rotation: 20,
+    transformOrigin: "left top"
+  })
+
+  gsap.to('.bambooRight', {
+    ...AnimationProps,
+    rotation: 90,
+    transformOrigin: "100px 0"
+  })
+
+  gsap.to('.bambooCenterLeft', {
+    ...AnimationProps,
+    rotation: 70,
+    transformOrigin: "50px 0"
+  })
+
+  gsap.to('.bambooCenterLeft2', {
+    ...AnimationProps,
+    rotation: 95,
+    transformOrigin: "50px -20px"
+  })
+
+  gsap.to('.bambooCenterRight', {
+    ...AnimationProps,
+    rotation: 95,
+    transformOrigin: "0 top"
+  })
+})
 </script>
 
 <style scoped lang="sass">
@@ -162,23 +213,30 @@ const logout = async () => {
 
 .bambooRight
   @extend .bamboo
-  right: -100px
-  top:-50px
-  rotate: -250deg
+  right: -450px
+  top: -60px
+  rotate: 80deg
 .bambooCenterLeft
   @extend .bamboo
-  width: 200px
-  top: -20%
-  left: 38%
-  rotate: -270deg
+  width: 150px
+  top: 3%
+  left: 17%
+  rotate: 75deg
   transform: rotateX(180deg)
 
+.bambooCenterLeft2
+  @extend .bamboo
+  width: 250px
+  top: -3%
+  left: 29%
+  rotate: 100deg
+  transform: rotateX(180deg)
 .bambooCenterRight
   @extend .bamboo
   width: 200px
-  top: -20%
-  left: 50%
-  rotate: -270deg
+  top: -4%
+  left: 70%
+  rotate: 100deg
 
 #eaves
   width: 100%
@@ -191,9 +249,9 @@ const logout = async () => {
 
 #logo
   z-index: 9999
-  width: 130px
+  width: 300px
   position: fixed
   left: 50%
-  top:10px
+  top: 25px
   transform: translateX(-50%)
 </style>

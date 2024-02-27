@@ -1,15 +1,16 @@
 <template lang="pug">
-VContainer
-  VCol(cols="12")
-    H1 {{ product.name }}
-  VCol(cols="12" md="6")
-    VImg(:src="product.image")
-  VCol(cols="12" md="6")
-    P ${{ product.price }}
-    P(style="width-space: pre;") {{ product.description }}
-    VForm(:disabled="isSubmitting" @submit.prevent="submit")
-      VTextField(type="number" min="0" v-model.number="quantity.value.value" :error-messages="quantity.errorMessage.value")
-      VBtn(type="submit" prepend-icon="mdi-cart" :loading="isSubmitting") 加入購物車
+VCantainer
+  VRow(style="height: 100%;")
+    VCol.d-flex.justify-center.align-center(cols="12")
+      Div.pa-5.overflow(style="width: 75rem; height: 43.75rem; border-radius: 20px; background-color: #CAAD5F;" )
+        H1.text-center.mb-10(style="color: #261E47;") {{ product.name }}
+        Div.content
+          VImg(:src="product.image")
+          P 單價： {{ product.price }}
+          P(style="width-space: pre;") 商品說明：{{ product.description }}
+          VForm(:disabled="isSubmitting" @submit.prevent="submit")
+            VTextField(type="number" min="0" v-model.number="quantity.value.value" :error-messages="quantity.errorMessage.value")
+            VBtn(type="submit" prepend-icon="mdi-cart" :loading="isSubmitting") 加入購物車
 VOverlay.align-center.justify-center.text-center(:model-value="!product.sell")
   H1.text-red.text-h1 已下架
   VBtn(to="/" color="green") 回首頁
@@ -100,3 +101,16 @@ onMounted(async () => {
   }
 })
 </script>
+
+<style scoped lang="sass">
+.v-img
+  width: 350px
+  margin: auto
+.content
+  width: 350px
+  position: relative
+  top: 5%
+  left: 50%
+  transform: translateX(-50%)
+  font-size: 1.5rem
+</style>

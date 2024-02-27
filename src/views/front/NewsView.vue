@@ -1,11 +1,10 @@
 <template lang="pug">
 VCantainer
   VRow(style="height: 100%;")
-    VCol(cols="12" class="d-flex justify-center align-center")
-      Div(class="pa-5" style="width: 75rem; height: 43.75rem; border-radius: 20px; background-color: #CAAD5F;" )
-        H1(class="text-center mb-10" style="color: #261E47;") 武林告示
-        //- 這邊可能要串接後端接收資料
-        Div(class="ml-5" style="background-color= ;")
+    VCol.d-flex.justify-center.align-center(cols="12")
+      Div.pa-5.overflow(style="width: 75rem; height: 43.75rem; border-radius: 20px; background-color: #CAAD5F;" )
+        H1.text-center.mb-10(style="color: #261E47;") 武林告示
+        Div.ml-5(style="background-color= ;")
           VDataTable(:items="news" :headers="headers")
 </template>
 
@@ -26,7 +25,6 @@ const headers = [
 onMounted(async () => {
     try {
       const { data } = await apiAuth.get('/news')
-      console.log(...data.result)
       news.value.push(...data.result)
     } catch (error) {
       const text = error?.response?.data?.message || '發生錯誤，請稍後再試'
@@ -40,3 +38,14 @@ onMounted(async () => {
   })
 
 </script>
+
+<style scoped lang="sass">
+.overflow
+  overflow: scroll
+.overflow::-webkit-scrollbar 
+  display: none
+.v-table
+  background: #655131
+  color: #CAAD5F
+  font-size: 1.5rem
+</style>

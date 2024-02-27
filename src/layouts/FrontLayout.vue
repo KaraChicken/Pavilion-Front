@@ -30,12 +30,12 @@ VNavigationDrawer(v-model="drawer" temporary location="right" v-if="isMobile" co
         VAppBarTitle 登出
 //- 導覽列
 VImg#logo(src="../../src/assets/BackGround/logoBanner.png")
-Div#eaves(style="background: url('../../src/assets/BackGround/bg1.png')")
-Div.bambooLeft(id="leaf1" style="background: url('../../src/assets/BackGround/bg2.png') no-repeat center/cover")
-Div.bambooRight(style="background: url('../../src/assets/BackGround/bg2.png') no-repeat center/cover")
-Div.bambooCenterLeft(style="background: url('../../src/assets/BackGround/bg2.png') no-repeat center/cover")
-Div.bambooCenterLeft2(style="background: url('../../src/assets/BackGround/bg2.png') no-repeat center/cover")
-Div.bambooCenterRight(style="background: url('../../src/assets/BackGround/bg2.png') no-repeat center/cover")
+Div#eaves(style="background: url('../src/assets/BackGround/bg1.png')")
+Div.bambooLeft(id="leaf1" style="background: url('../src/assets/BackGround/bg2.png') no-repeat center/cover")
+Div.bambooRight(style="background: url('../src/assets/BackGround/bg2.png') no-repeat center/cover")
+Div.bambooCenterLeft(style="background: url('../src/assets/BackGround/bg2.png') no-repeat center/cover")
+Div.bambooCenterLeft2(style="background: url('../src/assets/BackGround/bg2.png') no-repeat center/cover")
+Div.bambooCenterRight(style="background: url('../src/assets/BackGround/bg2.png') no-repeat center/cover")
 //- VImg(src="../../src/assets/Chinese_style_eaves.png" style="position:fixed;top:0;left:0;width:100%;z-index:10000")
 VAppBar(color="secondary" style="position:fixed;top:45px;")
   //- 手機版

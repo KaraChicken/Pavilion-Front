@@ -15,7 +15,7 @@ Swiper.mySwiper(
     :modules="modules"
 )
   SwiperSlide(v-for="Item in slideItem" :key="slideItem.img")
-    Img(:src="`./src/assets/BBQ/${Item.img}.jpg`") 
+    Img(:src="`../src/assets/BBQ/${Item.img}.jpg`") 
     Div.slideText {{ slideItem.text }}
 
 //- P 融合客棧的獨特元素，精心特調的燒烤醬料宛如一瓶難得的陳年美酒，經過大廚巧妙調製，

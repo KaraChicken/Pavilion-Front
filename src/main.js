@@ -15,6 +15,9 @@ import { createApp } from 'vue'
 
 const app = createApp(App)
 
+// 取消vue警告訊息
+app.config.warnHandler = () => {}
+
 registerPlugins(app)
 
 app.mount('#app')

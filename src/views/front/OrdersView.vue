@@ -57,4 +57,8 @@ onMounted(async () => {
   overflow: scroll
 .overflow::-webkit-scrollbar 
   display: none
+.v-table
+  background: #655131
+  color: #CAAD5F
+  font-size: 1.5rem
 </style>

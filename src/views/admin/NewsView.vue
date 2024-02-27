@@ -3,7 +3,6 @@ VContainer
   VRow
     VCol(cols="12")
       h1.text-center 消息發布
-    VDivider
     VCol(cols="12")
       VBtn(color="green" @click="openDialog()") 新增消息
     VCol(cols="12")
@@ -34,7 +33,7 @@ VContainer
         template(#[`item.poText`]="{ item }")
           VIcon(icon="mdi-check" v-if="item.poText")
         template(#[`item.edit`]="{ item }")
-          VBtn(icon="mdi-pencil" variant="text" color="blue" @click="openDialog(item)")
+          VBtn(icon="mdi-pencil" variant="text" color="#A0674B" @click="openDialog(item)")
 VDialog(v-model="dialog" persistent width="500px")
   VForm(:disabled="isSubmitting" @submit.prevent="submit")
     VCard
@@ -240,3 +239,14 @@ const tableApplySearch = () => {
   tableLoadItems()
 }
 </script>
+
+<style scoped lang="sass">
+.v-table
+  background-color: #CAAD5F
+  font-size: 1.5rem
+  padding: 1rem
+  border-radius: 0.5rem
+
+button
+  font-size: 1.5rem
+</style>

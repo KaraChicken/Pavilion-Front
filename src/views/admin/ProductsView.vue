@@ -3,7 +3,6 @@ VContainer
   VRow
     VCol(cols="12")
       h1.text-center 商品管理
-    VDivider
     VCol(cols="12")
       VBtn(color="green" @click="openDialog()") 新增商品
     VCol(cols="12")
@@ -34,7 +33,7 @@ VContainer
         template(#[`item.sell`]="{ item }")
           VIcon(icon="mdi-check" v-if="item.sell")
         template(#[`item.edit`]="{ item }")
-          VBtn(icon="mdi-pencil" variant="text" color="blue" @click="openDialog(item)")
+          VBtn(icon="mdi-pencil" variant="text" color="#A0674B" @click="openDialog(item)")
 VDialog(v-model="dialog" persistent width="500px")
   VForm(:disabled="isSubmitting" @submit.prevent="submit")
     VCard
@@ -271,3 +270,14 @@ const tableApplySearch = () => {
   tableLoadItems()
 }
 </script>
+
+<style scoped lang="sass">
+.v-table
+  background-color: #CAAD5F
+  font-size: 1.5rem
+  padding: 1rem
+  border-radius: 0.5rem
+
+button
+  font-size: 1.5rem
+</style>

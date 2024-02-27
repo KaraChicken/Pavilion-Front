@@ -3,7 +3,6 @@ VContainer
   VRow
     VCol(cols="12")
       h1.text-center 訂單管理
-    VDivider
     VCol(cols="12")
       VDataTable(:items="orders" :headers="headers")
         template(#[`item.createdAt`]="{ item }")
@@ -53,3 +52,14 @@ onMounted(async () => {
   }
 })
 </script>
+
+<style scoped lang="sass">
+.v-table
+  background-color: #CAAD5F
+  font-size: 1.5rem
+  padding: 1rem
+  border-radius: 0.5rem
+
+button
+  font-size: 1.5rem
+</style>

@@ -119,6 +119,12 @@ onMounted(async () => {
 </script>
 
 <style scoped lang="sass">
+.v-table
+  background: #655131
+  color: #CAAD5F
+  font-size: 1.5rem
+button
+  font-size: 1.5rem
 .overflow
   overflow: scroll
 .overflow::-webkit-scrollbar 

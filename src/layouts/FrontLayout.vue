@@ -203,19 +203,19 @@ onMounted(()=>{
   pointer-events: none
   filter: drop-shadow(0 0 0 rgba(0,0,0,0.5))
   background-size: contain
+  background-image: url('@/assets/BackGround/bg2.png')
+
 
 .bambooLeft
   @extend .bamboo
   left: 8%
   top: -13%
   rotate: 60deg
-  background-image: url('@/assets/BackGround/bg2.png')
 .bambooRight
   @extend .bamboo
   right: -30%
   top: 40px
   rotate: 90deg
-  background-image: url('@/assets/BackGround/bg2.png')
 .bambooCenterLeft
   @extend .bamboo
   width: 150px
@@ -223,7 +223,6 @@ onMounted(()=>{
   left: 25%
   rotate: 100deg
   transform: rotateX(180deg)
-  background-image: url('@/assets/BackGround/bg2.png')
 .bambooCenterLeft2
   @extend .bamboo
   width: 250px
@@ -231,14 +230,12 @@ onMounted(()=>{
   left: 30.5%
   rotate: 100deg
   transform: rotateX(180deg)
-  background-image: url('@/assets/BackGround/bg2.png')
 .bambooCenterRight
   @extend .bamboo
   width: 200px
   top: -1%
   left: 65%
   rotate: 100deg
-  background-image: url('@/assets/BackGround/bg2.png')
 
 .eaves
   width: 100%

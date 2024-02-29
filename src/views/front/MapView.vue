@@ -2,6 +2,13 @@
 VCantainer
   VRow(style="height: 100%;")
     VCol(class="d-flex justify-center")
-      Div(style="width: 52rem; height: 52rem;")
-        Img(src="../src/assets/Map.jpg" style="height: 100%;")
+      div(style="width: 52rem; height: 52rem;")
+        div.map
 </template>
+
+<style scoped lang="sass">
+.map
+  height: 100%
+  background-image: url('@/assets/Map.jpg')
+  background-size: contain
+</style>

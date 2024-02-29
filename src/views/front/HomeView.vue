@@ -14,9 +14,9 @@ Swiper.mySwiper(
     }
     :modules="modules"
 )
-  SwiperSlide(v-for="Item in slideItem" :key="slideItem.img")
-    VImg(:src="`@/assets/BBQ/${Item.img}.jpg`") 
-    Div.slideText {{ slideItem.text }}
+  SwiperSlide(v-for="Item in slideItem" :key="slideItem")
+    div(:style='{backgroundImage:`url(${Item})`}') 
+    //- div.slideText {{ slideItem.text }}
 
 //- P 融合客棧的獨特元素，精心特調的燒烤醬料宛如一瓶難得的陳年美酒，經過大廚巧妙調製，
 //-   | 猶如客棧內的珍貴珍藏，每一滴都沉澱著風華絕代的瑰麗故事。
@@ -35,29 +35,23 @@ Swiper.mySwiper(
   const modules = [Autoplay, Scrollbar, Pagination];
 
   const slideItem = [
-    { img: 1 },
-    { img: 2 },
-    { img: 3 },
-    { img: 4 },
-    { img: 5 }
+    new URL('@/assets/BBQ/1.jpg', import.meta.url).href,
+    new URL('@/assets/BBQ/2.jpg', import.meta.url).href,
+    new URL('@/assets/BBQ/3.jpg', import.meta.url).href,
+    new URL('@/assets/BBQ/4.jpg', import.meta.url).href,
+    new URL('@/assets/BBQ/5.jpg', import.meta.url).href
   ]
 </script>
 
-<style scoped>
-.mySwiper {
-  height: calc(100vh - 64px);
-  width: 100%;
-}
-
-.mySwiper .swiper-slide {
-  height: 100%;
-  width: 100%;
-}
-
-.mySwiper .swiper-slide img {
-  width: 100%;
-  height: 100%;
-  background-size:cover;
-  object-fit: cover; 
-}
+<style scoped lang="sass">
+.mySwiper  
+  height: calc(100vh - 64px)
+  width: 100%
+  .swiper-slide 
+    height: 100%
+    width: 100%
+    div
+      width: 100%
+      height: 100%
+      background-size: cover
 </style>

@@ -217,8 +217,8 @@ const tableLoadItems = async () => {
         search: tableSearch.value
       }
     })
-    tableProducts.value.splice(0, tableProducts.value.length, ...data.result.data)
-    tableItemsLength.value = data.result.total
+    tableProducts.value.splice(0, tableProducts.value.length, ...data.result)
+    tableItemsLength.value = data.total
   } catch (error) {
     console.log(error)
     const text = error?.response?.data?.message || '發生錯誤，請稍後再試'

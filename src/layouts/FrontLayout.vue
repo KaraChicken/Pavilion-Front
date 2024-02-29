@@ -29,13 +29,13 @@ VNavigationDrawer(v-model="drawer" temporary location="right" v-if="isMobile" co
       template(#append)
         VAppBarTitle 登出
 //- 導覽列
-VImg#logo(src="@/assets/BackGround/logoBanner.png")
-Div#eaves(style="background: url('../../src/assets/BackGround/bg1.png')")
-VImg.bambooLeft(src='@/assets/BackGround/bg2.png')
-VImg.bambooRight(src='@/assets/BackGround/bg2.png')
-VImg.bambooCenterLeft(src='@/assets/BackGround/bg2.png')
-VImg.bambooCenterLeft2(src='@/assets/BackGround/bg2.png')
-VImg.bambooCenterRight(src='@/assets/BackGround/bg2.png')
+div.logo
+div.eaves
+div.bambooLeft
+div.bambooRight
+div.bambooCenterLeft
+div.bambooCenterLeft2
+div.bambooCenterRight
 VAppBar(color="secondary" style="position:fixed;top:45px;")
   //- 手機版
   template(v-if="isMobile")
@@ -155,7 +155,7 @@ const logout = async () => {
 onMounted(()=>{
   // 定義Gsap共享屬性
   const AnimationProps = {
-    duration: 5,
+    duration: 3,
     repeat: -1,
     yoyo: true,
     ease: 'power1.inOut'
@@ -163,20 +163,19 @@ onMounted(()=>{
 
   gsap.to('.bambooLeft', {
     ...AnimationProps,
-    x: 50,
-    rotation: 20,
+    rotation: 55,
     transformOrigin: "left top"
   })
 
   gsap.to('.bambooRight', {
     ...AnimationProps,
-    rotation: 90,
+    rotation: 95,
     transformOrigin: "100px 0"
   })
 
   gsap.to('.bambooCenterLeft', {
     ...AnimationProps,
-    rotation: 70,
+    rotation: 110,
     transformOrigin: "50px 0"
   })
 
@@ -196,48 +195,52 @@ onMounted(()=>{
 
 <style scoped lang="sass">
 .bamboo
-  width:500px
-  height:500px 
+  width: 500px
+  height: 600px 
   z-index: 9999
   position: fixed
   opacity: 80%
   pointer-events: none
   filter: drop-shadow(0 0 0 rgba(0,0,0,0.5))
+  background-size: contain
 
 .bambooLeft
   @extend .bamboo
-  left: -100px
-  top:-50px
-  rotate: 30deg
-
+  left: 8%
+  top: -13%
+  rotate: 60deg
+  background-image: url('@/assets/BackGround/bg2.png')
 .bambooRight
   @extend .bamboo
-  right: -450px
-  top: -60px
-  rotate: 80deg
+  right: -30%
+  top: 40px
+  rotate: 90deg
+  background-image: url('@/assets/BackGround/bg2.png')
 .bambooCenterLeft
   @extend .bamboo
   width: 150px
-  top: 7%
-  left: 15%
-  rotate: 75deg
+  top: -3%
+  left: 25%
+  rotate: 100deg
   transform: rotateX(180deg)
-
+  background-image: url('@/assets/BackGround/bg2.png')
 .bambooCenterLeft2
   @extend .bamboo
   width: 250px
   top: -3%
-  left: 29%
+  left: 30.5%
   rotate: 100deg
   transform: rotateX(180deg)
+  background-image: url('@/assets/BackGround/bg2.png')
 .bambooCenterRight
   @extend .bamboo
   width: 200px
-  top: -4%
-  left: 70%
+  top: -1%
+  left: 65%
   rotate: 100deg
+  background-image: url('@/assets/BackGround/bg2.png')
 
-#eaves
+.eaves
   width: 100%
   height: 100px
   position: fixed
@@ -245,12 +248,16 @@ onMounted(()=>{
   z-index: 2000
   filter: drop-shadow(10px 10px 10px rgba(0,0,0,0.5))
   background-repeat: repeat-x
+  background-image: url('@/assets/BackGround/bg1.png')
 
-#logo
+.logo
   z-index: 9999
   width: 300px
+  height: 110px
   position: fixed
   left: 50%
-  top: 25px
+  top: 3%
   transform: translateX(-50%)
+  background-image: url('@/assets/BackGround/logoBanner.png')
+  background-size: contain
 </style>

@@ -29,8 +29,8 @@ VNavigationDrawer(v-model="drawer" temporary location="right" v-if="isMobile" co
       template(#append)
         VAppBarTitle 登出
 //- 導覽列
-div.logo.d-none
-div.eaves.d-none.d-sm-block
+div.logo.d-none.d-lg-block
+div.eaves
 div.bambooLeft.d-none.d-sm-block
 div.bambooRight.d-none.d-sm-block
 div.bambooCenterLeft.d-none.d-md-block
@@ -39,6 +39,7 @@ div.bambooCenterRight.d-none.d-lg-block
 VAppBar(color="secondary" style="position:fixed;top:45px;")
   //- 手機版
   template(v-if="isMobile")
+  div.logo.d-lg-none(style="width: 445px;")
     VContainer.d-flex.align-center.justify-end
       VAppBarNavIcon(@click="drawer = true" color="text01")
   template(v-else)

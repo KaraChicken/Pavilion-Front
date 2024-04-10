@@ -39,7 +39,6 @@ div.bambooCenterRight.d-none.d-lg-block
 VAppBar(color="secondary" style="position:fixed;top:45px;")
   //- 手機版
   template(v-if="isMobile")
-  div.logo.d-lg-none(style="width: 445px;")
     VContainer.d-flex.align-center.justify-end
       VAppBarNavIcon(@click="drawer = true" color="text01")
   template(v-else)

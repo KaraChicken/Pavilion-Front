@@ -103,7 +103,7 @@ const routes = [
         component: () => import('@/views/front/CartView.vue'),
         meta: {
           title: '炙醉亭 | 購物車',
-          login: true,
+          login: false,
           admin: false
         }
       },

@@ -95,7 +95,7 @@ const newsItems = computed(() => {
 const cartItems = computed(() => {
   return [
     // { to: "/reservation", text: "訂位", icon: "mdi-account-group", show: user.isLogin },
-    { to: "/menu", text: "立即訂購", icon: "mdi-list-box", show: user.isLogin || user.isAdmin },
+    { to: "/menu", text: "立即訂購", icon: "mdi-list-box", show: !user.isLogin },
     { to: "/cart", text: "來去購物", icon: "mdi-cart", show: user.isLogin },
     { to: "/orders", text: "購物清單", icon: "mdi-list-status", show: user.isLogin && !user.isAdmin },
     { to: "/login", text: "立即登入", icon: "mdi-login", show: !user.isLogin },

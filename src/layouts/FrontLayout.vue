@@ -29,13 +29,13 @@ VNavigationDrawer(v-model="drawer" temporary location="right" v-if="isMobile" co
       template(#append)
         VAppBarTitle 登出
 //- 導覽列
-div.logo
-div.eaves
-div.bambooLeft
-div.bambooRight
-div.bambooCenterLeft
-div.bambooCenterLeft2
-div.bambooCenterRight
+div.logo.xs-none
+div.eaves.xs-none
+div.bambooLeft.xs-none
+div.bambooRight.xs-none
+div.bambooCenterLeft.xs-none
+div.bambooCenterLeft2.xs-none
+div.bambooCenterRight.xs-none
 VAppBar(color="secondary" style="position:fixed;top:45px;")
   //- 手機版
   template(v-if="isMobile")

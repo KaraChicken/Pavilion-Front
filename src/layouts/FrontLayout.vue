@@ -1,14 +1,7 @@
 <template lang="pug">
 //- 手機版側邊欄
 VNavigationDrawer(v-model="drawer" temporary location="right" v-if="isMobile" color="secondary")
-  VList(nav)
-    template(v-for="item in newsItems" :key="item.to" color="text01")
-      VListItem(:to="item.to" v-if="item.show")
-        template(#prepend)
-          VIcon(:icon="item.icon")
-        template(#append)
-          VBadge(color="error" :content="user.cart" v-if="item.to === '/cart'" inline)
-          VAppBarTitle {{ item.text }}
+  VList.pt-12(nav)
     template(v-for="item in newsItems" :key="item.to" color="text01")
       VListItem(:to="item.to" v-if="item.show")
         template(#prepend)
